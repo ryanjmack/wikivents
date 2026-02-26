@@ -1,0 +1,72 @@
+{
+  "name": "ts-vanilla",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.30.2",
+  "engines": {
+    "node": "24.13.1",
+    "pnpm": "10.30.2"
+  },
+  "scripts": {
+    "build": "vite build",
+    "dev": "rm -f vite.log && vite 2>&1 | tee vite.log",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "tsc --noEmit && eslint --flag unstable_native_nodejs_ts_config --cache . && stylelint \"src/**/*.css\" && prettier --check .",
+    "lint:fix": "eslint --flag unstable_native_nodejs_ts_config --fix . && stylelint --fix \"src/**/*.css\" && prettier --write .",
+    "prepare": "husky",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "modern-css-reset": "1.4.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "20.4.2",
+    "@commitlint/config-conventional": "20.4.2",
+    "@commitlint/types": "20.4.0",
+    "@eslint/js": "10.0.1",
+    "@tsconfig/strictest": "2.0.8",
+    "autoprefixer": "10.4.27",
+    "eslint": "10.0.2",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-jsonc": "3.1.1",
+    "husky": "9.1.7",
+    "lint-staged": "16.2.7",
+    "prettier": "3.8.1",
+    "stylelint": "17.4.0",
+    "stylelint-config-css-modules": "4.6.0",
+    "stylelint-config-standard": "40.0.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.56.1",
+    "vite": "7.3.1",
+    "vitest": "4.0.18"
+  },
+  "lint-staged": {
+    "package.json": [
+      "eslint --flag unstable_native_nodejs_ts_config --fix"
+    ],
+    "**/*.json": [
+      "prettier --write"
+    ],
+    "*.{js,mjs,ts}": [
+      "prettier --write",
+      "eslint --flag unstable_native_nodejs_ts_config --fix"
+    ],
+    "*.css": [
+      "prettier --write",
+      "stylelint --fix"
+    ],
+    "*.{md,html,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

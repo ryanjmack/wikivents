@@ -1,0 +1,32 @@
+
+
+# Conventional Commit Guide
+#   https://www.conventionalcommits.org/en/v1.0.0/#summary
+#
+# ----------------------------------------------------------------------
+# STRUCTURE:
+# <type>[!]: <description>
+#
+# [optional body]
+# ----------------------------------------------------------------------
+# TYPES:
+#    feat:     New feature
+#    fix:      Bugfix
+#    perf:     Efficiency and latency tuning
+#    chore:    Maintenance, tooling, and deps
+#    refactor: Cleanup (no behavior change)
+#    docs:     Documentation only
+#
+#    Append ! for breaking changes
+# ----------------------------------------------------------------------
+# SIMPLE EXAMPLE:
+#    chore: tighten eslint rules
+#
+# COMPLEX EXAMPLE (breaking change + body):
+#    chore!: upgrade TypeScript to v6
+#
+#    v6 enables stricter null checks by default. Several utility
+#    functions required explicit return type annotations that were
+#    previously inferred. Consumers of this shell will need to
+#    audit their own code after upgrading.
+# ----------------------------------------------------------------------

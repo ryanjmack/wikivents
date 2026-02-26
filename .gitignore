@@ -1,0 +1,26 @@
+node_modules/
+dist/
+*.local
+.idea/
+
+# build artifacts
+.tsbuildinfo
+.eslintcache
+
+# dev logs
+vite.log
+
+# test coverage
+coverage/
+
+# editor artifacts
+*.swp
+
+# env files — never commit secrets
+.env
+.env.*
+
+# personal
+PLAN.md
+TODO.md
+CLAUDE.md
