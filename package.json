@@ -1,5 +1,5 @@
 {
-  "name": "ts-vanilla",
+  "name": "wikivents",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -11,11 +11,11 @@
   "scripts": {
     "build": "vite build",
     "dev": "rm -f vite.log && vite 2>&1 | tee vite.log",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "fix": "eslint --flag unstable_native_nodejs_ts_config --fix . && stylelint --fix \"src/**/*.css\" && prettier --write . && tsc --noEmit",
     "lint": "tsc --noEmit && eslint --flag unstable_native_nodejs_ts_config --cache . && stylelint \"src/**/*.css\" && prettier --check .",
-    "lint:fix": "eslint --flag unstable_native_nodejs_ts_config --fix . && stylelint --fix \"src/**/*.css\" && prettier --write .",
     "prepare": "husky",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
