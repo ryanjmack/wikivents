@@ -6,7 +6,147 @@
     <title>wikivents</title>
   </head>
   <body>
-    <div id="app"></div>
+    <main>
+      <header id="header">
+        <canvas id="sparkline" aria-hidden="true"></canvas>
+        <div id="header-controls">
+          <span id="connection-status" data-state="connected" aria-live="polite">connected</span>
+          <button id="pause-btn" type="button" aria-pressed="false">Pause</button>
+        </div>
+      </header>
+
+      <section id="feed">
+        <div id="filter-bar">
+          <input
+            id="filter-input"
+            type="search"
+            aria-label="Filter events"
+            placeholder="type + enter..."
+          />
+        </div>
+
+        <div id="feed-grid" role="grid" aria-label="Event feed">
+          <div id="feed-header" role="row">
+            <div role="columnheader">Title</div>
+            <div role="columnheader">User</div>
+            <div role="columnheader">Bot</div>
+            <div role="columnheader">Type</div>
+            <div role="columnheader">Change</div>
+            <div role="columnheader">Time</div>
+          </div>
+          <div id="feed-viewport">
+            <!-- mock data — replaced by virtual renderer in V3 -->
+            <div class="feed-row" role="row" aria-selected="true">
+              <div role="gridcell">Bamboo shoot</div>
+              <div role="gridcell">Grinnypigs</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge">edit</span></div>
+              <div role="gridcell" class="change-pos">+29</div>
+              <div role="gridcell">00:23:31 UTC</div>
+            </div>
+            <div class="feed-row" role="row">
+              <div role="gridcell">Bamboo shoot</div>
+              <div role="gridcell">TonySt</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge">edit</span></div>
+              <div role="gridcell" class="change-neg">-29</div>
+              <div role="gridcell">00:23:40 UTC</div>
+            </div>
+            <div class="feed-row" role="row">
+              <div role="gridcell">United Football League (2024–present)</div>
+              <div role="gridcell">AFC Vixen</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge">edit</span></div>
+              <div role="gridcell" class="change-pos">+6550</div>
+              <div role="gridcell">00:23:33 UTC</div>
+            </div>
+            <div class="feed-row" role="row">
+              <div role="gridcell">2026 Israeli–United States strikes on Iran</div>
+              <div role="gridcell">David O. Johnson</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge">log</span></div>
+              <div role="gridcell">—</div>
+              <div role="gridcell">00:23:47 UTC</div>
+            </div>
+            <div class="feed-row" role="row">
+              <div role="gridcell">User:LevatorScapulaeSyndrome</div>
+              <div role="gridcell">Davide King</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge">log</span></div>
+              <div role="gridcell">—</div>
+              <div role="gridcell">00:23:30 UTC</div>
+            </div>
+            <div class="feed-row" role="row">
+              <div role="gridcell">Lauryn Hill</div>
+              <div role="gridcell">Kanyfug</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge">edit</span></div>
+              <div role="gridcell" class="change-neg">-6</div>
+              <div role="gridcell">00:23:50 UTC</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside>
+        <section id="details">
+          <h2>Details</h2>
+          <dl class="details-fields">
+            <dt>Title</dt>
+            <dd>Bamboo shoot</dd>
+            <dt>User</dt>
+            <dd>Grinnypigs</dd>
+            <dt>Type</dt>
+            <dd>edit</dd>
+            <dt>Change</dt>
+            <dd class="change-pos">+29 bytes</dd>
+            <dt>Time</dt>
+            <dd>00:23:31 UTC</dd>
+            <dt>Summary</dt>
+            <dd>
+              i made it more understandable in hopes that people don't judge something so quickly
+              before they try it
+            </dd>
+          </dl>
+        </section>
+        <section id="hot-pages">
+          <h2>Hot pages (60s)</h2>
+          <ol class="hot-pages-list">
+            <li class="hot-page-item">
+              <span class="hot-page-indicator">▶</span>
+              <span class="hot-page-title">Bamboo shoot</span>
+              <span class="hot-page-count">×2</span>
+            </li>
+            <li class="hot-page-item">
+              <span class="hot-page-indicator"></span>
+              <span class="hot-page-title">United Football League (2024–present)</span>
+              <span class="hot-page-count">×1</span>
+            </li>
+            <li class="hot-page-item">
+              <span class="hot-page-indicator"></span>
+              <span class="hot-page-title">Lauryn Hill</span>
+              <span class="hot-page-count">×1</span>
+            </li>
+          </ol>
+        </section>
+      </aside>
+
+      <footer>
+        <dl>
+          <dt>FPS</dt>
+          <dd><output id="hud-fps">60</output></dd>
+          <dt>longtasks</dt>
+          <dd><output id="hud-longtasks">3</output></dd>
+          <dt>queue</dt>
+          <dd><output id="hud-queue">8</output></dd>
+          <dt>dropped</dt>
+          <dd><output id="hud-dropped">12</output></dd>
+          <dt>events/sec</dt>
+          <dd><output id="hud-eps">4.2</output></dd>
+        </dl>
+      </footer>
+    </main>
+
     <script type="module" src="/src/app/app.ts"></script>
   </body>
 </html>

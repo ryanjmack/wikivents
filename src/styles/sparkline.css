@@ -1,0 +1,10 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. MIT License.
+ */
+
+#sparkline {
+  box-sizing: border-box;
+  align-self: stretch;
+  width: 100%;
+  padding-right: var(--space-md);
+}

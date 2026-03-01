@@ -1,4 +1,22 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. MIT License.
+ */
+
 :root {
-  --color-bg: #1a1b26;
-  --color-text: #66d37f;
+  /* font families */
+  --font-ui: system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  /* margin and padding */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+
+  /* font sizes */
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
+  --font-base: 1rem;
+  --font-lg: 1.125rem;
+  --font-xl: 1.25rem;
 }

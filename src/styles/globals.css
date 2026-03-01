@@ -1,31 +1,29 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. MIT License.
+ */
+
 @import 'modern-css-reset';
+@import './theme.css';
 @import './variables.css';
+@import './animations.css';
+@import './layout.css';
+@import './header.css';
+@import './sparkline.css';
+@import './controls.css';
+@import './feed.css';
+@import './hud.css';
 
 :root {
-  -webkit-font-smoothing: antialiased;
-  color-scheme: dark;
-  font-family: system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  background-color: var(--color-bg);
+  font-family: var(--font-ui);
   color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100dvh;
   overflow: hidden;
-}
-
-#app {
-  padding: 40px 60px;
-}
-
-#greeting {
-  margin-bottom: 8px;
-}
-
-#clock {
-  font-size: 12px;
-  opacity: 0.7;
 }

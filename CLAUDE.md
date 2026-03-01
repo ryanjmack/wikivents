@@ -7,6 +7,8 @@ Stream: `https://stream.wikimedia.org/v2/stream/recentchange`
 ## Rules
 
 - Fix all errors and warnings. Never suppress with `@ts-ignore`, `eslint-disable`, or `!` assertions. If a fix requires a decision you can't make alone, ask the user.
+- CSS units: use `rem` for all sizing (spacing, font sizes, borders). Use `em` only when the value should scale with the element's font size (e.g. `::before` dot indicators). Raw decimal rem values belong only in `variables.css` tokens -- use token names everywhere else. Canvas 2D API cannot use CSS custom properties directly; convert via `parseFloat(getComputedStyle(el).getPropertyValue('--token')) * rootFontSizePx`.
+- All TS/CSS files must begin with the copyright block. TS: `/*\n * Copyright (c) 2026 Ryan Mack. MIT License.\n */`. CSS: same but block style. ESLint enforces and auto-fixes the TS header.
 - Pin exact dep versions.
 - Co-locate tests: `foo.ts` and `foo.test.ts` in the same directory.
 - After every edit, run `pnpm fix`. Runs all formatters and type-checks.

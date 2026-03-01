@@ -1,0 +1,37 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. MIT License.
+ */
+
+main {
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'feed   panel'
+    'hud    hud';
+  grid-template-rows: 3fr 20fr 2fr;
+  grid-template-columns: 3fr 1fr;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+
+  & #header {
+    grid-area: header;
+    min-height: 0;
+  }
+
+  & #feed {
+    grid-area: feed;
+    min-height: 0;
+  }
+
+  & aside {
+    grid-area: panel;
+    min-height: 0;
+  }
+
+  & footer {
+    grid-area: hud;
+    min-height: 0;
+  }
+}

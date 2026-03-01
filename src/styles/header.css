@@ -1,0 +1,12 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. MIT License.
+ */
+
+#header {
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+}

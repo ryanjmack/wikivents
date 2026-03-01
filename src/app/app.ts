@@ -1,20 +1,35 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. MIT License.
+ */
 import '../styles/globals.css';
-import styles from './app.module.css';
-import {formatTime} from '../utils/formatTime.ts';
+import {drawSparkline} from '../utils/sparkline/sparkline.ts';
 
-const timeEl = document.getElementById('time');
+const canvas = document.getElementById('sparkline') as HTMLCanvasElement;
+const header = canvas.closest('header');
+const ctx = canvas.getContext('2d');
 
-if (!timeEl) {
-  throw new Error('#time not found');
+if (!ctx) {
+  throw new Error('canvas 2d context unavailable');
 }
 
-const time: HTMLElement = timeEl;
+// defer until after first layout
+requestAnimationFrame(() => {
+  if (!header) {
+    throw new Error('header element not found');
+  }
 
-time.className = styles['time'] ?? '';
+  const headerStyle = getComputedStyle(header);
+  const paddingTop = parseFloat(headerStyle.paddingTop);
+  const paddingBottom = parseFloat(headerStyle.paddingBottom);
+  const contentHeight = Math.round(header.clientHeight - paddingTop - paddingBottom);
 
-function tick(): void {
-  time.textContent = formatTime(new Date());
-}
+  const canvasStyle = getComputedStyle(canvas);
+  const paddingLeft = parseFloat(canvasStyle.paddingLeft);
+  const paddingRight = parseFloat(canvasStyle.paddingRight);
+  const contentWidth = Math.round(canvas.offsetWidth - paddingLeft - paddingRight);
 
-tick();
-setInterval(tick, 1000);
+  canvas.width = contentWidth;
+  canvas.height = contentHeight;
+
+  drawSparkline(ctx);
+});
