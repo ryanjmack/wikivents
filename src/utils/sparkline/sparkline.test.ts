@@ -21,7 +21,7 @@ describe('toPoints', () => {
     expect(pts[1]?.y).toBe(0);
   });
 
-  it('single point sits at bottom-left', () => {
+  it('single point maps to top-left (sole value === max, so y = h - h = 0; canvas y=0 is top)', () => {
     const pts = toPoints([42], 100, 100);
 
     expect(pts[0]).toEqual({x: 0, y: 0});

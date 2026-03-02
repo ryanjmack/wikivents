@@ -7,5 +7,5 @@
   flex: 1;
   width: 100%;
   min-height: 0;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-s);
 }

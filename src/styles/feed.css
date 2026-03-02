@@ -10,17 +10,17 @@
 
 #filter-bar {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--space-s);
   align-items: center;
-  padding: var(--space-sm);
-  font-size: var(--font-size-base);
+  padding: var(--space-s);
+  font-size: var(--font-size-m);
   background: var(--color-bg-surface);
   border-bottom: 1px solid var(--color-border);
 }
 
 #filter-input {
   flex: 1;
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-xs) var(--space-s);
   color: var(--color-text);
   background: var(--color-bg);
   border: 1px solid var(--color-border);
@@ -40,8 +40,11 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+
+  /* flex children default to min-height: auto; 0 lets this shrink within its track */
+  min-height: 0;
   overflow: hidden;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-s);
   font-weight: var(--font-weight-base);
 }
 
@@ -50,7 +53,7 @@
   grid-template-columns:
     minmax(0, 6fr) minmax(0, 3fr) minmax(0, 1fr) minmax(0, 2fr)
     minmax(0, 2fr) minmax(0, 3fr);
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-xs) var(--space-s);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-muted);
   background: var(--color-bg-surface);
@@ -59,6 +62,9 @@
 
 #feed-viewport {
   flex: 1;
+
+  /* same reason — allows overflow-y: auto to scroll rather than expand */
+  min-height: 0;
   overflow-y: auto;
 }
 
@@ -67,7 +73,7 @@
   grid-template-columns:
     minmax(0, 6fr) minmax(0, 3fr) minmax(0, 1fr) minmax(0, 2fr)
     minmax(0, 2fr) minmax(0, 3fr);
-  padding: var(--space-sm);
+  padding: var(--space-s);
   border-bottom: 1px solid var(--color-border);
 
   &[aria-selected='true'] {
@@ -79,19 +85,19 @@
 
 .type-badge {
   font-family: var(--font-mono);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-m);
   color: var(--color-text-muted);
 }
 
 .change-pos {
   font-family: var(--font-mono);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-m);
   color: var(--color-success);
 }
 
 .change-neg {
   font-family: var(--font-mono);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-m);
   color: var(--color-danger);
 }
 
@@ -99,7 +105,7 @@ aside {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-s);
   font-weight: var(--font-weight-base);
   background: var(--color-bg-surface);
   border-left: 1px solid var(--color-border);
@@ -107,24 +113,24 @@ aside {
 
 #details {
   flex: 1;
-  padding: var(--space-sm);
+  padding: var(--space-s);
   overflow-y: auto;
 
   & h2 {
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-s);
     color: var(--color-text-muted);
   }
 }
 
 #hot-pages {
-  padding: var(--space-sm);
+  padding: var(--space-s);
   border-top: 1px solid var(--color-border);
 
   & h2 {
     display: flex;
     gap: var(--space-xs);
     align-items: center;
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-s);
     color: var(--color-text-muted);
 
     &::after {
@@ -139,7 +145,7 @@ aside {
 .details-fields {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: var(--space-xs) var(--space-sm);
+  gap: var(--space-xs) var(--space-s);
   margin: 0;
 
   & dt {
@@ -184,6 +190,6 @@ aside {
 .hot-page-count {
   flex-shrink: 0;
   font-family: var(--font-mono);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-m);
   color: var(--color-text-faint);
 }

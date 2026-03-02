@@ -5,22 +5,29 @@
 #header {
   display: grid;
   grid-template-columns: subgrid;
+
+  /* subgrid only inherits columns — rows need explicit sizing.
+     1fr fills the full header height so the flex chain in #sparkline-panel works. */
+  grid-auto-rows: 1fr;
   background: var(--color-bg-surface);
   border-bottom: 1px solid var(--color-border);
 }
 
 #sparkline-panel {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
-  padding: var(--space-md);
+  gap: var(--space-m);
+  height: 100%;
+  padding: var(--space-m);
+  overflow: hidden;
 }
 
 #sparkline-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-s);
 }
 
 #eps-label {
@@ -29,6 +36,6 @@
 
 #stream-controls {
   display: flex;
-  gap: var(--space-md);
+  gap: var(--space-m);
   align-items: center;
 }

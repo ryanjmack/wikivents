@@ -9,9 +9,9 @@
 
   /* margin and padding */
   --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
+  --space-s: 0.5rem;
+  --space-m: 1rem;
+  --space-l: 1.5rem;
 
   /* font weights */
   --font-weight-base: 400;
@@ -24,9 +24,13 @@
    *   Viewport width:      font scales, spacing stays fixed (density stays constant)
    *   UI font-size toggle: everything scales (future, will adjust root font-size)
    *
-   * Coefficients: min 0.875rem@1280px → max 1.125rem@2560px
+   * Fluid type scale — same slope 0.3125vw throughout; each step ±0.125rem min/max
+   *   min 0.875rem@1280px → max 1.125rem@2560px (base)
    *   slope = Δpx / Δvp = 4px / 1280px = 0.3125vw
    */
-  --font-size-base: clamp(0.875rem, 0.625rem + 0.3125vw, 1.125rem);
-  --font-size-small: clamp(0.75rem, 0.5rem + 0.3125vw, 1rem);
+  --font-size-xs: clamp(0.625rem, 0.375rem + 0.3125vw, 0.875rem);
+  --font-size-s: clamp(0.75rem, 0.5rem + 0.3125vw, 1rem);
+  --font-size-m: clamp(0.875rem, 0.625rem + 0.3125vw, 1.125rem);
+  --font-size-l: clamp(1rem, 0.75rem + 0.3125vw, 1.25rem);
+  --font-size-xl: clamp(1.125rem, 0.875rem + 0.3125vw, 1.375rem);
 }

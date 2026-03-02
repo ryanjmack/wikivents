@@ -6,21 +6,31 @@ import {initFontScale} from '../utils/preferences/font-scale.ts';
 import {drawSparkline} from '../utils/sparkline/sparkline.ts';
 
 const canvas = document.getElementById('sparkline') as HTMLCanvasElement;
+const panel = document.getElementById('sparkline-panel');
+const bar = document.getElementById('sparkline-bar');
 const ctx = canvas.getContext('2d');
 
-if (!ctx) {
-  throw new Error('canvas 2d context unavailable');
+if (!ctx || !panel || !bar) {
+  throw new Error('required elements missing');
 }
 
 // TS doesn't carry narrowing into closures -- rebind so closures see non-nullable types.
 const renderCtx = ctx;
+const renderPanel = panel;
+const renderBar = bar;
 
-function resizeAndDraw(): void {
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
+function resizeAndDraw(entries: ResizeObserverEntry[]): void {
+  const entry = entries[0];
+
+  if (!entry) {
+    return;
+  }
+  const gap = parseFloat(getComputedStyle(renderPanel).rowGap) || 0;
+  canvas.width = Math.round(entry.contentRect.width);
+  canvas.height = Math.round(entry.contentRect.height - renderBar.offsetHeight - gap);
   drawSparkline(renderCtx);
 }
 
-new ResizeObserver(resizeAndDraw).observe(canvas);
+new ResizeObserver(resizeAndDraw).observe(renderPanel);
 
 initFontScale();
