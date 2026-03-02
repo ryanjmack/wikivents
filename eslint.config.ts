@@ -105,6 +105,6 @@ export default defineConfig(
     },
   },
   {
-    ignores: ['dist/'],
+    ignores: ['dist/', 'mocks/'],
   },
 );

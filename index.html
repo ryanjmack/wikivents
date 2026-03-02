@@ -8,10 +8,30 @@
   <body>
     <main>
       <header id="header">
-        <canvas id="sparkline" aria-hidden="true"></canvas>
+        <div id="sparkline-panel">
+          <div id="sparkline-bar">
+            <span id="eps-label">events/sec</span>
+            <div id="stream-controls">
+              <span id="connection-status" data-state="connected" aria-live="polite">
+                connected
+              </span>
+              <button id="pause-btn" type="button" aria-pressed="false">Pause</button>
+            </div>
+          </div>
+          <canvas id="sparkline" aria-hidden="true"></canvas>
+        </div>
         <div id="header-controls">
-          <span id="connection-status" data-state="connected" aria-live="polite">connected</span>
-          <button id="pause-btn" type="button" aria-pressed="false">Pause</button>
+          <div id="font-scale-controls" role="group" aria-label="Font size">
+            <button type="button" id="font-scale-sm" aria-pressed="false" aria-label="Small font">
+              <span aria-hidden="true" style="font-size: 0.75em">A</span>
+            </button>
+            <button type="button" id="font-scale-md" aria-pressed="true" aria-label="Medium font">
+              <span aria-hidden="true" style="font-size: 1em">A</span>
+            </button>
+            <button type="button" id="font-scale-lg" aria-pressed="false" aria-label="Large font">
+              <span aria-hidden="true" style="font-size: 1.33em">A</span>
+            </button>
+          </div>
         </div>
       </header>
 

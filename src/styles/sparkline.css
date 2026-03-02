@@ -4,7 +4,8 @@
 
 #sparkline {
   box-sizing: border-box;
-  align-self: stretch;
+  flex: 1;
   width: 100%;
-  padding-right: var(--space-md);
+  min-height: 0;
+  font-size: var(--font-size-small);
 }

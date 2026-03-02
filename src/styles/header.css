@@ -5,8 +5,30 @@
 #header {
   display: grid;
   grid-template-columns: subgrid;
-  align-items: center;
-  padding: var(--space-sm) var(--space-md);
   background: var(--color-bg-surface);
   border-bottom: 1px solid var(--color-border);
+}
+
+#sparkline-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+
+#sparkline-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-small);
+}
+
+#eps-label {
+  color: var(--color-text-muted);
+}
+
+#stream-controls {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
 }

@@ -13,10 +13,20 @@
   --space-md: 1rem;
   --space-lg: 1.5rem;
 
-  /* font sizes */
-  --font-xs: 0.75rem;
-  --font-sm: 0.875rem;
-  --font-base: 1rem;
-  --font-lg: 1.125rem;
-  --font-xl: 1.25rem;
+  /* font weights */
+  --font-weight-base: 400;
+  --font-weight-bold: 600;
+
+  /*
+   * Each scaling axis has a different scope
+   *   Browser zoom:        everything scales (browser owns this, don't interfere)
+   *   Browser font-size:   everything scales (spacing is rem, so it follows)
+   *   Viewport width:      font scales, spacing stays fixed (density stays constant)
+   *   UI font-size toggle: everything scales (future, will adjust root font-size)
+   *
+   * Coefficients: min 0.875rem@1280px → max 1.125rem@2560px
+   *   slope = Δpx / Δvp = 4px / 1280px = 0.3125vw
+   */
+  --font-size-base: clamp(0.875rem, 0.625rem + 0.3125vw, 1.125rem);
+  --font-size-small: clamp(0.75rem, 0.5rem + 0.3125vw, 1rem);
 }

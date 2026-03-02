@@ -2,8 +2,6 @@
  * Copyright (c) 2026 Ryan Mack. MIT License.
  */
 
-const LABEL_H = 16;
-
 export function toPoints(data: number[], w: number, h: number): {x: number; y: number}[] {
   const max = Math.max(...data);
   const step = data.length > 1 ? w / (data.length - 1) : 0;
@@ -20,26 +18,19 @@ export function drawSparkline(
 ): void {
   const {canvas} = ctx;
   const {width: w, height: h} = canvas;
-  const lineH = h - LABEL_H;
   const style = getComputedStyle(canvas);
-  const rootFs = parseFloat(getComputedStyle(document.documentElement).fontSize);
-  const fontXsPx = parseFloat(style.getPropertyValue('--font-xs').trim()) * rootFs;
 
   ctx.clearRect(0, 0, w, h);
 
-  ctx.font = `${fontXsPx}px ${style.getPropertyValue('--font-ui').trim()}`;
-  ctx.fillStyle = style.getPropertyValue('--color-text-muted').trim();
-  ctx.fillText('events/sec', 4, LABEL_H - 3);
-
-  const points = toPoints(data, w, lineH);
+  const points = toPoints(data, w, h);
 
   ctx.beginPath();
 
   points.forEach(({x, y}, i) => {
     if (i === 0) {
-      ctx.moveTo(x, y + LABEL_H);
+      ctx.moveTo(x, y);
     } else {
-      ctx.lineTo(x, y + LABEL_H);
+      ctx.lineTo(x, y);
     }
   });
 
