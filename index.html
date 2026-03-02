@@ -10,25 +10,55 @@
       <header id="header">
         <div id="sparkline-panel">
           <div id="sparkline-bar">
-            <span id="eps-label">events/sec</span>
+            <span id="eps-label" data-i18n="epsLabel">events/sec</span>
             <div id="stream-controls">
-              <span id="connection-status" data-state="connected" aria-live="polite">
+              <span
+                id="connection-status"
+                data-state="connected"
+                aria-live="polite"
+                data-i18n="connectionConnected"
+              >
                 connected
               </span>
-              <button id="pause-btn" type="button" aria-pressed="false">Pause</button>
+              <button id="pause-btn" type="button" aria-pressed="false" data-i18n="pause">
+                Pause
+              </button>
             </div>
           </div>
           <canvas id="sparkline" aria-hidden="true"></canvas>
         </div>
         <div id="header-controls">
-          <div id="font-scale-controls" role="group" aria-label="Font size">
-            <button type="button" id="font-scale-sm" aria-pressed="false" aria-label="Small font">
+          <div
+            id="font-scale-controls"
+            role="group"
+            data-i18n-aria-label="fontSizeGroupLabel"
+            aria-label="Font size"
+          >
+            <button
+              type="button"
+              id="font-scale-sm"
+              aria-pressed="false"
+              data-i18n-aria-label="fontSizeSmall"
+              aria-label="Small font"
+            >
               <span aria-hidden="true" style="font-size: 0.75em">A</span>
             </button>
-            <button type="button" id="font-scale-md" aria-pressed="true" aria-label="Medium font">
+            <button
+              type="button"
+              id="font-scale-md"
+              aria-pressed="true"
+              data-i18n-aria-label="fontSizeMedium"
+              aria-label="Medium font"
+            >
               <span aria-hidden="true" style="font-size: 1em">A</span>
             </button>
-            <button type="button" id="font-scale-lg" aria-pressed="false" aria-label="Large font">
+            <button
+              type="button"
+              id="font-scale-lg"
+              aria-pressed="false"
+              data-i18n-aria-label="fontSizeLarge"
+              aria-label="Large font"
+            >
               <span aria-hidden="true" style="font-size: 1.33em">A</span>
             </button>
           </div>
@@ -40,19 +70,21 @@
           <input
             id="filter-input"
             type="search"
+            data-i18n-aria-label="filterAriaLabel"
             aria-label="Filter events"
+            data-i18n-placeholder="filterPlaceholder"
             placeholder="type + enter..."
           />
         </div>
 
         <div id="feed-grid" role="grid" aria-label="Event feed">
           <div id="feed-header" role="row">
-            <div role="columnheader">Title</div>
-            <div role="columnheader">User</div>
-            <div role="columnheader">Bot</div>
-            <div role="columnheader">Type</div>
-            <div role="columnheader">Change</div>
-            <div role="columnheader">Time</div>
+            <div role="columnheader" data-i18n="colTitle">Title</div>
+            <div role="columnheader" data-i18n="colUser">User</div>
+            <div role="columnheader" data-i18n="colBot">Bot</div>
+            <div role="columnheader" data-i18n="colType">Type</div>
+            <div role="columnheader" data-i18n="colChange">Change</div>
+            <div role="columnheader" data-i18n="colTime">Time</div>
           </div>
           <div id="feed-viewport">
             <!-- mock data — replaced by virtual renderer in V3 -->
@@ -110,19 +142,19 @@
 
       <aside>
         <section id="details">
-          <h2>Details</h2>
+          <h2 data-i18n="sectionDetails">Details</h2>
           <dl class="details-fields">
-            <dt>Title</dt>
+            <dt data-i18n="detailTitle">Title</dt>
             <dd>Bamboo shoot</dd>
-            <dt>User</dt>
+            <dt data-i18n="detailUser">User</dt>
             <dd>Grinnypigs</dd>
-            <dt>Type</dt>
+            <dt data-i18n="detailType">Type</dt>
             <dd>edit</dd>
-            <dt>Change</dt>
+            <dt data-i18n="detailChange">Change</dt>
             <dd class="change-pos">+29 bytes</dd>
-            <dt>Time</dt>
+            <dt data-i18n="detailTime">Time</dt>
             <dd>00:23:31 UTC</dd>
-            <dt>Summary</dt>
+            <dt data-i18n="detailSummary">Summary</dt>
             <dd>
               i made it more understandable in hopes that people don't judge something so quickly
               before they try it
@@ -130,7 +162,7 @@
           </dl>
         </section>
         <section id="hot-pages">
-          <h2>Hot pages (60s)</h2>
+          <h2 data-i18n="sectionHotpages">Hot pages (60s)</h2>
           <ol class="hot-pages-list">
             <li class="hot-page-item">
               <span class="hot-page-indicator">▶</span>
@@ -153,15 +185,15 @@
 
       <footer>
         <dl>
-          <dt>FPS</dt>
+          <dt data-i18n="hudFps">FPS</dt>
           <dd><output id="hud-fps">60</output></dd>
-          <dt>longtasks</dt>
+          <dt data-i18n="hudLongtasks">longtasks</dt>
           <dd><output id="hud-longtasks">3</output></dd>
-          <dt>queue</dt>
+          <dt data-i18n="hudQueue">queue</dt>
           <dd><output id="hud-queue">8</output></dd>
-          <dt>dropped</dt>
+          <dt data-i18n="hudDropped">dropped</dt>
           <dd><output id="hud-dropped">12</output></dd>
-          <dt>events/sec</dt>
+          <dt data-i18n="epsLabel">events/sec</dt>
           <dd><output id="hud-eps">4.2</output></dd>
         </dl>
       </footer>

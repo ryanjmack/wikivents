@@ -2,8 +2,11 @@
  * Copyright (c) 2026 Ryan Mack. MIT License.
  */
 import '../styles/globals.css';
+import {hydrateI18n} from '../i18n/init.ts';
 import {initFontScale} from '../utils/preferences/font-scale.ts';
 import {drawSparkline} from '../utils/sparkline/sparkline.ts';
+
+hydrateI18n();
 
 const canvas = document.getElementById('sparkline') as HTMLCanvasElement;
 const panel = document.getElementById('sparkline-panel');
