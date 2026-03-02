@@ -2,12 +2,19 @@
  * Copyright (c) 2026 Ryan Mack. MIT License.
  */
 
-#header-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-m);
-  font-size: var(--font-size-s);
+@keyframes dot-breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+#eps-label {
+  color: var(--color-text-muted);
 }
 
 #pause-btn {
@@ -22,36 +29,6 @@
     color: var(--color-accent-hover);
     background: var(--color-bg-overlay);
     border-color: var(--color-accent-hover);
-  }
-}
-
-#font-scale-controls {
-  display: flex;
-  gap: var(--space-s);
-  align-items: baseline;
-}
-
-#font-scale-controls button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  color: var(--color-text-faint);
-  cursor: pointer;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--space-xs);
-
-  &:hover {
-    color: var(--color-text-muted);
-    background: var(--color-bg-overlay);
-  }
-
-  &[aria-pressed='true'] {
-    color: var(--color-accent);
-    background: var(--color-bg-overlay);
-    border-color: var(--color-accent);
   }
 }
 

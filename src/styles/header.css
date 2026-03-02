@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: subgrid;
 
-  /* subgrid only inherits columns — rows need explicit sizing.
+  /* subgrid only inherits columns, rows need explicit sizing.
      1fr fills the full header height so the flex chain in #sparkline-panel works. */
   grid-auto-rows: 1fr;
   background: var(--color-bg-surface);
@@ -23,6 +23,14 @@
   overflow: hidden;
 }
 
+#sparkline {
+  box-sizing: border-box;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  font-size: var(--font-size-s);
+}
+
 #sparkline-bar {
   display: flex;
   align-items: center;
@@ -30,12 +38,16 @@
   font-size: var(--font-size-s);
 }
 
-#eps-label {
-  color: var(--color-text-muted);
-}
-
 #stream-controls {
   display: flex;
   gap: var(--space-m);
   align-items: center;
+}
+
+#header-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-m);
+  font-size: var(--font-size-s);
 }

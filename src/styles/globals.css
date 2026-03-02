@@ -5,13 +5,13 @@
 @import 'modern-css-reset';
 @import './theme.css';
 @import './variables.css';
-@import './animations.css';
 @import './layout.css';
 @import './header.css';
-@import './sparkline.css';
-@import './controls.css';
+@import './stream-controls.css';
+@import './ui-controls.css';
 @import './feed.css';
-@import './hud.css';
+@import './panel.css';
+@import './footer.css';
 
 :root {
   font-family: var(--font-ui);
