@@ -20,7 +20,7 @@
               >
                 connected
               </span>
-              <button id="pause-btn" type="button" aria-pressed="false" data-i18n="pause">
+              <button id="pause-btn" type="button" aria-pressed="false" autofocus data-i18n="pause">
                 Pause
               </button>
             </div>
@@ -65,20 +65,148 @@
         </div>
       </header>
 
-      <section id="feed">
-        <div id="filter-bar">
-          <input
-            id="filter-input"
-            type="search"
-            data-i18n-aria-label="filterAriaLabel"
-            aria-label="Filter events"
-            data-i18n-placeholder="filterPlaceholder"
-            placeholder="type + enter..."
-          />
-        </div>
+      <div id="inspector-header">
+        <h2>Inspector</h2>
+        <button id="inspector-toggle" type="button" aria-pressed="false">JSON</button>
+      </div>
 
-        <div id="feed-grid" role="grid" aria-label="Event feed">
-          <div id="feed-header" role="row">
+      <div id="filter-bar">
+        <input
+          id="filter-input"
+          type="search"
+          data-i18n-aria-label="filterAriaLabel"
+          aria-label="Filter events"
+          data-i18n-placeholder="filterPlaceholder"
+          placeholder="type + enter..."
+        />
+      </div>
+
+      <section id="inspector" data-view="pretty">
+        <div id="inspector-pretty">
+          <dl class="inspector-fields">
+            <dt>Title</dt>
+            <dd>
+              <a
+                href="https://en.wikipedia.org/wiki/Bamboo_shoot"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Bamboo shoot ↗
+              </a>
+            </dd>
+            <dt>User</dt>
+            <dd>
+              <a
+                href="https://en.wikipedia.org/wiki/User:Grinnypigs"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Grinnypigs ↗
+              </a>
+            </dd>
+            <dt>Bot</dt>
+            <dd><span class="val-no">no</span></dd>
+            <dt>Type</dt>
+            <dd><span class="type-badge type-edit">edit</span></dd>
+            <dt>Change</dt>
+            <dd><span class="change-pos">+29 bytes</span></dd>
+            <dt>Time</dt>
+            <dd>2026-03-01 00:23:31 UTC</dd>
+            <dt>Comment</dt>
+            <dd>
+              i made it more understandable in hopes that people don't judge something so quickly
+              before they try it
+            </dd>
+            <dt>Minor edit</dt>
+            <dd><span class="val-no">no</span></dd>
+            <dt>Patrolled</dt>
+            <dd><span class="val-yes">yes</span></dd>
+            <dt>Wiki</dt>
+            <dd>enwiki</dd>
+            <dt>Namespace</dt>
+            <dd>Article</dd>
+            <dt>Revision</dt>
+            <dd>1340000000 → 1340000001</dd>
+            <dt>Diff</dt>
+            <dd>
+              <a
+                class="diff-link"
+                href="https://en.wikipedia.org/w/index.php?diff=1340000001&amp;oldid=1340000000"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                open diff ↗
+              </a>
+            </dd>
+            <hr class="inspector-divider" />
+            <dt>Domain</dt>
+            <dd><span class="val-meta">en.wikipedia.org</span></dd>
+            <dt>Page URL</dt>
+            <dd>
+              <a
+                href="https://en.wikipedia.org/wiki/Bamboo_shoot"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                https://en.wikipedia.org/wiki/Bamboo_shoot ↗
+              </a>
+            </dd>
+            <dt>Size</dt>
+            <dd><span class="val-meta">12,450 → 12,479 B</span></dd>
+            <dt>Schema</dt>
+            <dd><span class="val-meta">/mediawiki/recentchange/1.0.0</span></dd>
+            <dt>Event ID</dt>
+            <dd><span class="val-meta">12345678</span></dd>
+            <dt>Stream</dt>
+            <dd><span class="val-meta">mediawiki.recentchange</span></dd>
+            <dt>Topic</dt>
+            <dd><span class="val-meta">eqiad.mediawiki.recentchange</span></dd>
+            <dt>Partition</dt>
+            <dd><span class="val-meta">0</span></dd>
+            <dt>Offset</dt>
+            <dd><span class="val-meta">5000</span></dd>
+          </dl>
+        </div>
+        <pre id="inspector-json" aria-hidden="true">
+{
+  "$schema": "/mediawiki/recentchange/1.0.0",
+  "meta": {
+    "uri": "https://en.wikipedia.org/wiki/Bamboo_shoot",
+    "request_id": "a1b2c3d4-0000-0000-0000-000000000001",
+    "id": "101fffd7-0000-0000-0000-000000000001",
+    "dt": "2026-03-01T00:23:31.000Z",
+    "domain": "en.wikipedia.org",
+    "stream": "mediawiki.recentchange",
+    "topic": "eqiad.mediawiki.recentchange",
+    "partition": 0,
+    "offset": 5000
+  },
+  "id": 12345678,
+  "type": "edit",
+  "namespace": 0,
+  "title": "Bamboo shoot",
+  "title_url": "https://en.wikipedia.org/wiki/Bamboo_shoot",
+  "comment": "i made it more understandable in hopes that people don't judge something so quickly before they try it",
+  "parsedcomment": "i made it more understandable in hopes that people don&#039;t judge something so quickly before they try it",
+  "timestamp": 1772398511,
+  "user": "Grinnypigs",
+  "bot": false,
+  "minor": false,
+  "patrolled": true,
+  "wiki": "enwiki",
+  "server_name": "en.wikipedia.org",
+  "server_script_path": "/w",
+  "server_url": "https://en.wikipedia.org",
+  "length": { "old": 12450, "new": 12479 },
+  "revision": { "old": 1340000000, "new": 1340000001 },
+  "notify_url": "https://en.wikipedia.org/w/index.php?diff=1340000001&oldid=1340000000"
+}</pre
+        >
+      </section>
+
+      <section id="grid">
+        <div id="grid-inner" role="grid" aria-label="Event feed">
+          <div id="grid-header" role="row">
             <div role="columnheader" data-i18n="colTitle">Title</div>
             <div role="columnheader" data-i18n="colUser">User</div>
             <div role="columnheader" data-i18n="colBot">Bot</div>
@@ -86,53 +214,53 @@
             <div role="columnheader" data-i18n="colChange">Change</div>
             <div role="columnheader" data-i18n="colTime">Time</div>
           </div>
-          <div id="feed-viewport">
+          <div id="grid-viewport">
             <!-- mock data — replaced by virtual renderer in V3 -->
-            <div class="feed-row" role="row" aria-selected="true">
+            <div class="grid-row" role="row" aria-selected="true">
               <div role="gridcell">Bamboo shoot</div>
               <div role="gridcell">Grinnypigs</div>
               <div role="gridcell">—</div>
-              <div role="gridcell"><span class="type-badge">edit</span></div>
+              <div role="gridcell"><span class="type-badge type-edit">edit</span></div>
               <div role="gridcell" class="change-pos">+29</div>
               <div role="gridcell">00:23:31 UTC</div>
             </div>
-            <div class="feed-row" role="row">
+            <div class="grid-row" role="row">
               <div role="gridcell">Bamboo shoot</div>
               <div role="gridcell">TonySt</div>
               <div role="gridcell">—</div>
-              <div role="gridcell"><span class="type-badge">edit</span></div>
+              <div role="gridcell"><span class="type-badge type-edit">edit</span></div>
               <div role="gridcell" class="change-neg">-29</div>
               <div role="gridcell">00:23:40 UTC</div>
             </div>
-            <div class="feed-row" role="row">
+            <div class="grid-row" role="row">
               <div role="gridcell">United Football League (2024–present)</div>
               <div role="gridcell">AFC Vixen</div>
               <div role="gridcell">—</div>
-              <div role="gridcell"><span class="type-badge">edit</span></div>
+              <div role="gridcell"><span class="type-badge type-edit">edit</span></div>
               <div role="gridcell" class="change-pos">+6550</div>
               <div role="gridcell">00:23:33 UTC</div>
             </div>
-            <div class="feed-row" role="row">
+            <div class="grid-row" role="row">
               <div role="gridcell">2026 Israeli–United States strikes on Iran</div>
               <div role="gridcell">David O. Johnson</div>
               <div role="gridcell">—</div>
-              <div role="gridcell"><span class="type-badge">log</span></div>
+              <div role="gridcell"><span class="type-badge type-log">log</span></div>
               <div role="gridcell">—</div>
               <div role="gridcell">00:23:47 UTC</div>
             </div>
-            <div class="feed-row" role="row">
+            <div class="grid-row" role="row">
               <div role="gridcell">User:LevatorScapulaeSyndrome</div>
               <div role="gridcell">Davide King</div>
               <div role="gridcell">—</div>
-              <div role="gridcell"><span class="type-badge">log</span></div>
+              <div role="gridcell"><span class="type-badge type-log">log</span></div>
               <div role="gridcell">—</div>
               <div role="gridcell">00:23:30 UTC</div>
             </div>
-            <div class="feed-row" role="row">
+            <div class="grid-row" role="row">
               <div role="gridcell">Lauryn Hill</div>
               <div role="gridcell">Kanyfug</div>
               <div role="gridcell">—</div>
-              <div role="gridcell"><span class="type-badge">edit</span></div>
+              <div role="gridcell"><span class="type-badge type-edit">edit</span></div>
               <div role="gridcell" class="change-neg">-6</div>
               <div role="gridcell">00:23:50 UTC</div>
             </div>
@@ -141,43 +269,172 @@
       </section>
 
       <aside>
-        <section id="details">
-          <h2 data-i18n="sectionDetails">Details</h2>
-          <dl class="details-fields">
-            <dt data-i18n="detailTitle">Title</dt>
-            <dd>Bamboo shoot</dd>
-            <dt data-i18n="detailUser">User</dt>
-            <dd>Grinnypigs</dd>
-            <dt data-i18n="detailType">Type</dt>
-            <dd>edit</dd>
-            <dt data-i18n="detailChange">Change</dt>
-            <dd class="change-pos">+29 bytes</dd>
-            <dt data-i18n="detailTime">Time</dt>
-            <dd>00:23:31 UTC</dd>
-            <dt data-i18n="detailSummary">Summary</dt>
-            <dd>
-              i made it more understandable in hopes that people don't judge something so quickly
-              before they try it
-            </dd>
-          </dl>
-        </section>
         <section id="hot-pages">
           <h2 data-i18n="sectionHotpages">Hot pages (60s)</h2>
-          <ol class="hot-pages-list">
-            <li class="hot-page-item">
+          <ol class="hot-pages-list sidebar-list">
+            <li class="hot-page-item sidebar-item">
               <span class="hot-page-indicator">▶</span>
-              <span class="hot-page-title">Bamboo shoot</span>
-              <span class="hot-page-count">×2</span>
+              <a class="hot-page-title" href="https://en.wikipedia.org/wiki/Phlebiac_Brothers">
+                Phlebiac Brothers
+              </a>
+              <span class="hot-page-count mono-count">×7</span>
             </li>
-            <li class="hot-page-item">
+            <li class="hot-page-item sidebar-item">
               <span class="hot-page-indicator"></span>
-              <span class="hot-page-title">United Football League (2024–present)</span>
-              <span class="hot-page-count">×1</span>
+              <a
+                class="hot-page-title"
+                href="https://en.wikipedia.org/wiki/2026_Zona_da_Mata_floods"
+              >
+                2026 Zona da Mata floods
+              </a>
+              <span class="hot-page-count mono-count">×4</span>
             </li>
-            <li class="hot-page-item">
+            <li class="hot-page-item sidebar-item">
               <span class="hot-page-indicator"></span>
-              <span class="hot-page-title">Lauryn Hill</span>
-              <span class="hot-page-count">×1</span>
+              <a
+                class="hot-page-title"
+                href="https://en.wikipedia.org/wiki/Draft:Superman/Spider-Man_and_Spider-Man/Superman"
+              >
+                Draft:Superman/Spider-Man and Spider-Man/Superman
+              </a>
+              <span class="hot-page-count mono-count">×4</span>
+            </li>
+            <li class="hot-page-item sidebar-item">
+              <span class="hot-page-indicator"></span>
+              <a
+                class="hot-page-title"
+                href="https://en.wikipedia.org/wiki/Wikipedia:Articles_for_deletion/Dhananjay_(politician)"
+              >
+                Wikipedia:Articles for deletion/Dhananjay (politician)
+              </a>
+              <span class="hot-page-count mono-count">×4</span>
+            </li>
+            <li class="hot-page-item sidebar-item">
+              <span class="hot-page-indicator"></span>
+              <a class="hot-page-title" href="https://en.wikipedia.org/wiki/Hala_Al-Qadi">
+                Hala Al-Qadi
+              </a>
+              <span class="hot-page-count mono-count">×4</span>
+            </li>
+          </ol>
+        </section>
+
+        <section id="hot-users">
+          <h2>Hot users (60s)</h2>
+          <ol class="hot-users-list sidebar-list">
+            <li class="hot-user-item sidebar-item">
+              <span class="hot-user-indicator">▶</span>
+              <!-- bot badge omitted: bot=false -->
+              <a class="hot-user-name" href="https://en.wikipedia.org/wiki/User:Staryu">Staryu</a>
+              <span class="hot-user-count mono-count">×273</span>
+            </li>
+            <li class="hot-user-item sidebar-item">
+              <span class="hot-user-indicator"></span>
+              <a class="hot-user-name" href="https://en.wikipedia.org/wiki/User:Zackmann08">
+                Zackmann08
+              </a>
+              <span class="hot-user-count mono-count">×76</span>
+            </li>
+            <li class="hot-user-item sidebar-item">
+              <span class="hot-user-indicator"></span>
+              <a class="hot-user-name" href="https://en.wikipedia.org/wiki/User:Yedaman54">
+                Yedaman54
+              </a>
+              <span class="hot-user-count mono-count">×28</span>
+            </li>
+            <li class="hot-user-item sidebar-item">
+              <span class="hot-user-indicator"></span>
+              <a class="hot-user-name" href="https://en.wikipedia.org/wiki/User:Izno">Izno</a>
+              <span class="hot-user-count mono-count">×26</span>
+            </li>
+            <li class="hot-user-item sidebar-item">
+              <span class="hot-user-indicator"></span>
+              <a class="hot-user-name" href="https://en.wikipedia.org/wiki/User:TNstingray">
+                TNstingray
+              </a>
+              <span class="hot-user-count mono-count">×17</span>
+            </li>
+          </ol>
+        </section>
+
+        <section id="largest-deltas">
+          <h2>Largest deltas</h2>
+          <ol class="delta-list sidebar-list">
+            <li class="delta-item sidebar-item">
+              <a class="delta-title" href="https://en.wikipedia.org/wiki/Afterpiece">Afterpiece</a>
+              <span class="delta-value change-pos">+5280</span>
+            </li>
+            <li class="delta-item sidebar-item">
+              <a class="delta-title" href="https://en.wikipedia.org/wiki/Talk:La_France_Insoumise">
+                Talk:La France Insoumise
+              </a>
+              <span class="delta-value change-pos">+5162</span>
+            </li>
+            <li class="delta-item sidebar-item">
+              <a class="delta-title" href="https://en.wikipedia.org/wiki/Mountjoy_Square">
+                Mountjoy Square
+              </a>
+              <span class="delta-value change-pos">+3210</span>
+            </li>
+            <li class="delta-item sidebar-item">
+              <a class="delta-title" href="https://en.wikipedia.org/wiki/Hemispheres_Tour">
+                Hemispheres Tour
+              </a>
+              <span class="delta-value change-pos">+3122</span>
+            </li>
+            <li class="delta-item sidebar-item">
+              <a class="delta-title" href="https://en.wikipedia.org/wiki/User_talk:Walterfgnn">
+                User talk:Walterfgnn
+              </a>
+              <span class="delta-value change-neg">-2292</span>
+            </li>
+          </ol>
+        </section>
+
+        <section id="hot-types">
+          <h2>Hot types (60s)</h2>
+          <ol class="hot-types-list sidebar-list">
+            <li class="hot-type-item sidebar-item">
+              <span class="type-badge type-edit">edit</span>
+              <span class="hot-type-count mono-count">×497</span>
+            </li>
+            <li class="hot-type-item sidebar-item">
+              <span class="type-badge type-categorize">categorize</span>
+              <span class="hot-type-count mono-count">×426</span>
+            </li>
+            <li class="hot-type-item sidebar-item">
+              <span class="type-badge type-log">log</span>
+              <span class="hot-type-count mono-count">×55</span>
+            </li>
+            <li class="hot-type-item sidebar-item">
+              <span class="type-badge type-new">new</span>
+              <span class="hot-type-count mono-count">×21</span>
+            </li>
+          </ol>
+        </section>
+
+        <section id="hot-log-actions">
+          <h2>Hot log actions (60s)</h2>
+          <ol class="log-action-list sidebar-list">
+            <li class="log-action-item sidebar-item">
+              <span class="log-action-key">abusefilter:hit</span>
+              <span class="log-action-count mono-count">×22</span>
+            </li>
+            <li class="log-action-item sidebar-item">
+              <span class="log-action-key">newusers:create</span>
+              <span class="log-action-count mono-count">×11</span>
+            </li>
+            <li class="log-action-item sidebar-item">
+              <span class="log-action-key">block:block</span>
+              <span class="log-action-count mono-count">×7</span>
+            </li>
+            <li class="log-action-item sidebar-item">
+              <span class="log-action-key">move:move_redir</span>
+              <span class="log-action-count mono-count">×2</span>
+            </li>
+            <li class="log-action-item sidebar-item">
+              <span class="log-action-key">delete:delete_redir</span>
+              <span class="log-action-count mono-count">×2</span>
             </li>
           </ol>
         </section>

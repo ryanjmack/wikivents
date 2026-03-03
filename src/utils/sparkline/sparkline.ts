@@ -34,7 +34,7 @@ export function drawSparkline(
     }
   });
 
-  ctx.strokeStyle = style.getPropertyValue('--color-accent').trim();
+  ctx.strokeStyle = style.getPropertyValue('--color-sparkline').trim();
   ctx.lineWidth = 1.5;
   ctx.stroke();
 }

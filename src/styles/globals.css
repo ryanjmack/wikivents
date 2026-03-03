@@ -9,8 +9,10 @@
 @import './header.css';
 @import './stream-controls.css';
 @import './ui-controls.css';
-@import './feed.css';
-@import './panel.css';
+@import './inspector.css';
+@import './filter.css';
+@import './grid.css';
+@import './hot-pages.css';
 @import './footer.css';
 
 :root {
@@ -31,4 +33,29 @@ body {
   width: 100vw;
   height: 100dvh;
   overflow: hidden;
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-base);
+}
+
+/* ── Utilities ─────────────────────────────────────────── */
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar-item {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: baseline;
+}
+
+.mono-count {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  color: var(--color-accent);
 }

@@ -28,6 +28,7 @@ function resizeAndDraw(entries: ResizeObserverEntry[]): void {
   if (!entry) {
     return;
   }
+
   const gap = parseFloat(getComputedStyle(renderPanel).rowGap) || 0;
   canvas.width = Math.round(entry.contentRect.width);
   canvas.height = Math.round(entry.contentRect.height - renderBar.offsetHeight - gap);
