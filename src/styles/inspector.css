@@ -90,8 +90,8 @@
 
   & dd {
     color: var(--color-text);
-    word-break: break-all;
-    overflow-wrap: break-word;
+    hyphens: auto;
+    overflow-wrap: anywhere;
   }
 
   & a {

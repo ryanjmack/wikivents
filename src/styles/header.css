@@ -45,6 +45,7 @@
 
 #header-controls {
   display: flex;
+  gap: var(--space-m);
   align-items: center;
   justify-content: center;
   padding: var(--space-l);

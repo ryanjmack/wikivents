@@ -4,6 +4,7 @@
 import '../styles/globals.css';
 import {hydrateI18n} from '../i18n/init.ts';
 import {initFontScale} from '../utils/preferences/font-scale.ts';
+import {initColorScheme, initTheme} from '../utils/preferences/theme.ts';
 import {drawSparkline} from '../utils/sparkline/sparkline.ts';
 
 hydrateI18n();
@@ -37,4 +38,10 @@ function resizeAndDraw(entries: ResizeObserverEntry[]): void {
 
 new ResizeObserver(resizeAndDraw).observe(renderPanel);
 
+new MutationObserver(() => {
+  drawSparkline(renderCtx);
+}).observe(document.documentElement, {attributeFilter: ['data-theme']});
+
 initFontScale();
+initTheme();
+initColorScheme();

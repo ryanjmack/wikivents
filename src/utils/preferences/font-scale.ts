@@ -8,7 +8,7 @@ export const SCALES = ['sm', 'md', 'lg'] as const;
 export type FontScale = (typeof SCALES)[number];
 
 export function isScale(value: string | null): value is FontScale {
-  return value !== null && (SCALES as readonly string[]).includes(value);
+  return value !== null && SCALES.some((s) => s === value);
 }
 
 export function applyScale(scale: FontScale): void {

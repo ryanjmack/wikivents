@@ -13,6 +13,7 @@ export const en = {
   fontSizeSmall: 'Small font',
   fontSizeMedium: 'Medium font',
   fontSizeLarge: 'Large font',
+  themeSelectLabel: 'Theme',
   // feed
   filterPlaceholder: 'type + enter...',
   filterAriaLabel: 'Filter events',

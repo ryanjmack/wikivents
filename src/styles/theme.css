@@ -2,7 +2,10 @@
  * Copyright (c) 2026 Ryan Mack. MIT License.
  */
 
-:root {
+/* Color mixing: use color-mix(in oklch, ...) for all derived/alpha colors — perceptually uniform */
+
+/* ── tokyonight (dark) ──── */
+html[data-theme='tokyonight'] {
   color-scheme: dark;
 
   --color-bg: #24283b;
@@ -13,29 +16,313 @@
   --color-text-faint: #565f89;
   --color-border: #414868;
   --color-border-subtle: #292e42;
-  --color-accent: #7aa2f7;
+  --color-accent: #7aa2f7; /* blue — primary interactive */
   --color-accent-hover: #8db0ff;
+  --color-sparkline: #7aa2f7;
   --color-success: #9ece6a;
-  --color-warning: #e0af68;
+  --color-warning: #ff9e64; /* orange */
   --color-danger: #f7768e;
-  --color-info: #7dcfff;
+  --color-info: #7dcfff; /* cyan — secondary */
+  --color-purple: #bb9af7;
+  --color-yellow: #e0af68; /* amber — Tokyo Night signature */
+}
 
-  @media (prefers-color-scheme: light) {
-    color-scheme: light;
+/* ── tokyonight-light ───── */
+html[data-theme='tokyonight-light'] {
+  color-scheme: light;
 
-    --color-bg: #e1e2e7;
-    --color-bg-surface: #d0d5e3;
-    --color-bg-overlay: #b7c1e3;
-    --color-text: #3760bf;
-    --color-text-muted: #6172b0;
-    --color-text-faint: #848cb5;
-    --color-border: #a8aecb;
-    --color-border-subtle: #c4c8da;
-    --color-accent: #2e7de9;
-    --color-accent-hover: #358aff;
-    --color-success: #587539;
-    --color-warning: #8c6c3e;
-    --color-danger: #f52a65;
-    --color-info: #007197;
-  }
+  --color-bg: #e1e2e7;
+  --color-bg-surface: #d0d5e3;
+  --color-bg-overlay: #b7c1e3;
+  --color-text: #3760bf;
+  --color-text-muted: #6172b0;
+  --color-text-faint: #848cb5;
+  --color-border: #a8aecb;
+  --color-border-subtle: #c4c8da;
+  --color-accent: #1558c8;
+  --color-accent-hover: #2e7de9;
+  --color-sparkline: #1558c8;
+  --color-success: #587539;
+  --color-warning: #b15c00; /* orange */
+  --color-danger: #f52a65;
+  --color-info: #007197;
+  --color-purple: #9854f1;
+  --color-yellow: #8c6c3e; /* amber */
+}
+
+/* ── dracula (dark) ──────── */
+html[data-theme='dracula'] {
+  color-scheme: dark;
+
+  --color-bg: #1c1f26;
+  --color-bg-surface: #282a36;
+  --color-bg-overlay: #343746;
+  --color-text: #f8f8f2;
+  --color-text-muted: #6272a4;
+  --color-text-faint: #44475a;
+  --color-border: #44475a;
+  --color-border-subtle: #343746;
+  --color-accent: #8be9fd; /* cyan — Dracula primary */
+  --color-accent-hover: #80ffff; /* ANSI bright cyan */
+  --color-sparkline: #8be9fd;
+  --color-success: #50fa7b;
+  --color-warning: #ffb86c; /* orange */
+  --color-danger: #f55;
+  --color-info: #bd93f9; /* purple — secondary */
+  --color-purple: #ff79c6; /* pink */
+  --color-yellow: #f1fa8c;
+}
+
+/* ── alucard (light) ─────── */
+html[data-theme='alucard'] {
+  color-scheme: light;
+
+  --color-bg: #fffbeb;
+  --color-bg-surface: #f5f1e3;
+  --color-bg-overlay: #d4ceb8;
+  --color-text: #1f1f1f;
+  --color-text-muted: #6c664b;
+  --color-text-faint: #786a54;
+  --color-border: #d4ceb8;
+  --color-border-subtle: #f5f1e3;
+  --color-accent: #036a96; /* cyan — Dracula primary (light) */
+  --color-accent-hover: #1a8fbf;
+  --color-sparkline: #3b7ea6;
+  --color-success: #14710a;
+  --color-warning: #a34d14; /* orange */
+  --color-danger: #cb3a2a;
+  --color-info: #644ac9; /* purple — secondary */
+  --color-purple: #a3144d; /* pink */
+  --color-yellow: #846e15;
+}
+
+/* ── matrix (dark) ──────── */
+html[data-theme='matrix'] {
+  color-scheme: dark;
+
+  --color-bg: #000; /* pure black */
+  --color-bg-surface: #0a120a;
+  --color-bg-overlay: #142414;
+  --color-text: #00ff41; /* bright phosphor green */
+  --color-text-muted: #008f11;
+  --color-text-faint: #003b00;
+  --color-border: #008f11;
+  --color-border-subtle: #003b00;
+  --color-accent: #20c20e;
+  --color-accent-hover: #00ff41;
+  --color-sparkline: var(--color-accent);
+  --color-success: #00ff41;
+  --color-warning: #ffb000; /* amber phosphor */
+  --color-danger: #ff003c; /* red pill */
+  --color-info: #0cf; /* blue phosphor */
+  --color-purple: #c0f;
+  --color-yellow: #cf0;
+}
+
+/* ── matrix-light ──────── */
+html[data-theme='matrix-light'] {
+  /* keeping color-scheme dark — even the "light" matrix is inherently dark */
+  color-scheme: dark;
+
+  --color-bg: #0d1a0d; /* medium base */
+  --color-bg-surface: #162616;
+  --color-bg-overlay: #203620;
+  --color-text: #6f6; /* washed phosphor */
+  --color-text-muted: #2ebd2e;
+  --color-text-faint: #145c14;
+  --color-border: #2ebd2e;
+  --color-border-subtle: #162616;
+  --color-accent: #3f3;
+  --color-accent-hover: #9f9;
+  --color-sparkline: var(--color-accent);
+  --color-success: #3f3;
+  --color-warning: #fc0;
+  --color-danger: #f36;
+  --color-info: #3cf;
+  --color-purple: #d966ff;
+  --color-yellow: #df3;
+}
+
+/* Modus Operandi - High contrast light theme */
+html[data-theme='modus-operandi'] {
+  color-scheme: light;
+
+  --color-bg: #f5f5f5; /* bg_main */
+  --color-bg-surface: #f2f2f2; /* bg_dim */
+  --color-bg-overlay: #e0e0e0; /* bg_active */
+  --color-text: #000; /* fg_main */
+  --color-text-muted: #595959; /* fg_dim */
+  --color-text-faint: #9f9f9f; /* border (used for faint elements) */
+  --color-border: #9f9f9f; /* border */
+  --color-border-subtle: #f0f0f0; /* bg_alt */
+  --color-accent: #3548cf; /* blue_warmer — primary interactive */
+  --color-accent-hover: #00f; /* blue_intense */
+  --color-sparkline: #3548cf; /* matching accent */
+  --color-success: #00663f; /* green_cooler (ok) */
+  --color-warning: #7a4f2f; /* yellow_cooler (warning) */
+  --color-danger: #a0132f; /* red_cooler (error) */
+  --color-info: #0000b0; /* blue_cooler (info) */
+  --color-purple: #721045; /* magenta */
+  --color-yellow: #6f5500; /* yellow */
+}
+
+/* Modus Vivendi - High contrast dark theme */
+html[data-theme='modus-vivendi'] {
+  color-scheme: dark;
+
+  --color-bg: #000; /* bg_main */
+  --color-bg-surface: #1e1e1e; /* bg_dim */
+  --color-bg-overlay: #303030; /* bg_active */
+  --color-text: #e8e8e8; /* fg_main */
+  --color-text-muted: #989898; /* fg_dim */
+  --color-text-faint: #646464; /* border (used for faint elements) */
+  --color-border: #646464; /* border */
+  --color-border-subtle: #0f0f0f; /* bg_alt */
+  --color-accent: #79a8ff; /* blue_warmer — primary interactive */
+  --color-accent-hover: #338fff; /* blue_intense */
+  --color-sparkline: #79a8ff; /* matching accent */
+  --color-success: #00c06f; /* green_cooler (ok) */
+  --color-warning: #dfaf7a; /* yellow_cooler (warning) */
+  --color-danger: #ff7f9f; /* red_cooler (error) */
+  --color-info: #00bcff; /* blue_cooler (info) */
+  --color-purple: #feacd0; /* magenta */
+  --color-yellow: #d0bc00; /* yellow */
+}
+
+/* Modus Operandi Tinted - Light variant */
+html[data-theme='modus-operandi-tinted'] {
+  color-scheme: light;
+
+  --color-bg: #fbf7f0; /* tinted_bg_main */
+  --color-bg-surface: #efe9dd; /* tinted_bg_dim */
+  --color-bg-overlay: #c9b9b0; /* tinted_bg_active */
+  --color-text: #000; /* fg_main */
+  --color-text-muted: #595959; /* fg_dim */
+  --color-text-faint: #9f9690; /* tinted_border */
+  --color-border: #9f9690; /* tinted_border */
+  --color-border-subtle: #f0f0f0; /* bg_alt */
+  --color-accent: #3548cf; /* blue_warmer */
+  --color-accent-hover: #00f; /* blue_intense */
+  --color-sparkline: #3548cf;
+  --color-success: #00663f; /* green_cooler */
+  --color-warning: #7a4f2f; /* yellow_cooler */
+  --color-danger: #a0132f; /* red_cooler */
+  --color-info: #0000b0; /* blue_cooler */
+  --color-purple: #721045; /* magenta */
+  --color-yellow: #6f5500; /* yellow */
+}
+
+/* Modus Vivendi Tinted - Dark variant */
+html[data-theme='modus-vivendi-tinted'] {
+  color-scheme: dark;
+
+  --color-bg: #0d0e1c; /* tinted_bg_main */
+  --color-bg-surface: #1d2235; /* tinted_bg_dim */
+  --color-bg-overlay: #4a4f69; /* tinted_bg_active */
+  --color-text: #e8e8e8; /* fg_main */
+  --color-text-muted: #989898; /* fg_dim */
+  --color-text-faint: #61647a; /* tinted_border */
+  --color-border: #61647a; /* tinted_border */
+  --color-border-subtle: #0f0f0f; /* bg_alt */
+  --color-accent: #79a8ff; /* blue_warmer */
+  --color-accent-hover: #338fff; /* blue_intense */
+  --color-sparkline: #79a8ff;
+  --color-success: #00c06f; /* green_cooler */
+  --color-warning: #dfaf7a; /* yellow_cooler */
+  --color-danger: #ff7f9f; /* red_cooler */
+  --color-info: #00bcff; /* blue_cooler */
+  --color-purple: #feacd0; /* magenta */
+  --color-yellow: #d0bc00; /* yellow */
+}
+
+/* Modus Operandi Deuteranopia - Light variant */
+html[data-theme='modus-operandi-deuteranopia'] {
+  color-scheme: light;
+
+  --color-bg: #f5f5f5; /* bg_main */
+  --color-bg-surface: #f2f2f2; /* bg_dim */
+  --color-bg-overlay: #e0e0e0; /* bg_active */
+  --color-text: #000; /* fg_main */
+  --color-text-muted: #595959; /* fg_dim */
+  --color-text-faint: #9f9f9f; /* border */
+  --color-border: #9f9f9f; /* border */
+  --color-border-subtle: #f0f0f0; /* bg_alt */
+  --color-accent: #3548cf; /* blue_warmer */
+  --color-accent-hover: #00f; /* blue_intense */
+  --color-sparkline: #3548cf;
+  --color-success: #303099; /* deuteranopia_fg_added */
+  --color-warning: #695500; /* deuteranopia_yellow */
+  --color-danger: #973300; /* deuteranopia_yellow_warmer (used for error here) */
+  --color-info: #0031a9; /* blue */
+  --color-purple: #721045; /* magenta */
+  --color-yellow: #695500; /* deuteranopia_yellow */
+}
+
+/* Modus Vivendi Deuteranopia - Dark variant */
+html[data-theme='modus-vivendi-deuteranopia'] {
+  color-scheme: dark;
+
+  --color-bg: #000; /* bg_main */
+  --color-bg-surface: #1e1e1e; /* bg_dim */
+  --color-bg-overlay: #303030; /* bg_active */
+  --color-text: #e8e8e8; /* fg_main */
+  --color-text-muted: #989898; /* fg_dim */
+  --color-text-faint: #646464; /* border */
+  --color-border: #646464; /* border */
+  --color-border-subtle: #0f0f0f; /* bg_alt */
+  --color-accent: #79a8ff; /* blue_warmer */
+  --color-accent-hover: #338fff; /* blue_intense */
+  --color-sparkline: #79a8ff;
+  --color-success: #c4d5ff; /* deuteranopia_fg_added */
+  --color-warning: #cabf00; /* deuteranopia_yellow */
+  --color-danger: #ffa00f; /* deuteranopia_yellow_warmer (used for error here) */
+  --color-info: #2fafff; /* blue */
+  --color-purple: #feacd0; /* magenta */
+  --color-yellow: #cabf00; /* deuteranopia_yellow */
+}
+
+/* Modus Operandi Tritanopia - Light variant */
+html[data-theme='modus-operandi-tritanopia'] {
+  color-scheme: light;
+
+  --color-bg: #f5f5f5; /* bg_main */
+  --color-bg-surface: #f2f2f2; /* bg_dim */
+  --color-bg-overlay: #e0e0e0; /* bg_active */
+  --color-text: #000; /* fg_main */
+  --color-text-muted: #595959; /* fg_dim */
+  --color-text-faint: #9f9f9f; /* border */
+  --color-border: #9f9f9f; /* border */
+  --color-border-subtle: #f0f0f0; /* bg_alt */
+  --color-accent: #3548cf; /* blue_warmer */
+  --color-accent-hover: #00f; /* blue_intense */
+  --color-sparkline: #3548cf;
+  --color-success: #005079; /* tritanopia_fg_added */
+  --color-warning: #721045; /* magenta (used for warning here) */
+  --color-danger: #b21100; /* tritanopia_red_warmer (used for error here) */
+  --color-info: #005e8b; /* cyan */
+  --color-purple: #721045; /* magenta */
+  --color-yellow: #695500; /* tritanopia_yellow */
+}
+
+/* Modus Vivendi Tritanopia - Dark variant */
+html[data-theme='modus-vivendi-tritanopia'] {
+  color-scheme: dark;
+
+  --color-bg: #000; /* bg_main */
+  --color-bg-surface: #1e1e1e; /* bg_dim */
+  --color-bg-overlay: #303030; /* bg_active */
+  --color-text: #fff; /* fg_main */
+  --color-text-muted: #989898; /* fg_dim */
+  --color-text-faint: #646464; /* border */
+  --color-border: #646464; /* border */
+  --color-border-subtle: #0f0f0f; /* bg_alt */
+  --color-accent: #79a8ff; /* blue_warmer */
+  --color-accent-hover: #338fff; /* blue_intense */
+  --color-sparkline: #79a8ff;
+  --color-success: #9fdfdf; /* tritanopia_fg_added */
+  --color-warning: #feacd0; /* magenta (used for warning here) */
+  --color-danger: #ff6740; /* tritanopia_red_warmer (used for error here) */
+  --color-info: #00d3d0; /* cyan */
+  --color-purple: #feacd0; /* magenta */
+  --color-yellow: #cabf00; /* tritanopia_yellow */
 }
