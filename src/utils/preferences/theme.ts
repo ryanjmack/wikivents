@@ -22,13 +22,28 @@ export const THEMES = [
 ] as const;
 export type Theme = (typeof THEMES)[number];
 
+const THEME_PAIRS: Partial<Record<Theme, Theme>> = (
+  [
+    ['tokyonight', 'tokyonight-light'],
+    ['dracula', 'alucard'],
+    ['matrix', 'matrix-light'],
+    ['modus-vivendi', 'modus-operandi'],
+    ['modus-vivendi-tinted', 'modus-operandi-tinted'],
+    ['modus-vivendi-deuteranopia', 'modus-operandi-deuteranopia'],
+    ['modus-vivendi-tritanopia', 'modus-operandi-tritanopia'],
+  ] satisfies [Theme, Theme][]
+).reduce<Partial<Record<Theme, Theme>>>(
+  (acc, [dark, light]) => ({...acc, [dark]: light, [light]: dark}),
+  {},
+);
+
 const THEME_SCHEMES: Record<Theme, 'light' | 'dark'> = {
   tokyonight: 'dark',
   'tokyonight-light': 'light',
   dracula: 'dark',
   alucard: 'light',
   matrix: 'dark',
-  'matrix-light': 'dark',
+  'matrix-light': 'light',
   'modus-operandi': 'light',
   'modus-vivendi': 'dark',
   'modus-operandi-tinted': 'light',
@@ -78,11 +93,15 @@ export function applyScheme(scheme: 'light' | 'dark'): void {
   const current = document.documentElement.dataset['theme'] ?? null;
 
   if (!isTheme(current) || THEME_SCHEMES[current] !== scheme) {
-    const first = THEMES.find((t) => THEME_SCHEMES[t] === scheme);
+    const paired = isTheme(current) ? THEME_PAIRS[current] : undefined;
+    const next =
+      paired !== undefined && THEME_SCHEMES[paired] === scheme
+        ? paired
+        : THEMES.find((t) => THEME_SCHEMES[t] === scheme);
 
-    if (first) {
-      localStorage.setItem(THEME_KEY, first);
-      applyTheme(first);
+    if (next !== undefined) {
+      localStorage.setItem(THEME_KEY, next);
+      applyTheme(next);
     }
   }
 }

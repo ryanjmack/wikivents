@@ -43,6 +43,20 @@
   gap: var(--space-xs);
   align-items: center;
 
+  & #theme-select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  & #theme-select-icon {
+    position: absolute;
+    left: 0.35rem;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+  }
+
   & button {
     display: flex;
     align-items: center;
@@ -78,7 +92,7 @@
 
 #theme-select {
   height: 1.75rem;
-  padding: 0 var(--space-s);
+  padding: 0 0.5rem 0 1.35rem;
   font-family: inherit;
   font-size: inherit;
   color: var(--color-text-muted);

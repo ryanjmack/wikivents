@@ -29,22 +29,62 @@
         </div>
         <div id="header-controls">
           <div id="color-scheme-controls">
-            <select id="theme-select" aria-label="Theme" data-i18n-aria-label="themeSelectLabel">
-              <option value="tokyonight">Tokyo Night</option>
-              <option value="tokyonight-light">Tokyo Night Light</option>
-              <option value="dracula" selected>Dracula</option>
-              <option value="alucard">Alucard</option>
-              <option value="matrix">Matrix</option>
-              <option value="matrix-light">Matrix Light</option>
-              <option value="modus-operandi">Modus Operandi</option>
-              <option value="modus-vivendi">Modus Vivendi</option>
-              <option value="modus-operandi-tinted">Modus Operandi Tinted</option>
-              <option value="modus-vivendi-tinted">Modus Vivendi Tinted</option>
-              <option value="modus-operandi-deuteranopia">Modus Operandi Deuteranopia</option>
-              <option value="modus-vivendi-deuteranopia">Modus Vivendi Deuteranopia</option>
-              <option value="modus-operandi-tritanopia">Modus Operandi Tritanopia</option>
-              <option value="modus-vivendi-tritanopia">Modus Vivendi Tritanopia</option>
-            </select>
+            <div id="theme-select-wrapper">
+              <span id="theme-select-icon" aria-hidden="true">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M 7.5 7.5 L 7.5 1.0 A 6.5 6.5 0 0 1 12.582 3.447 Z"
+                    fill="var(--color-danger)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 12.582 3.447 A 6.5 6.5 0 0 1 13.837 8.946 Z"
+                    fill="var(--color-warning)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 13.837 8.946 A 6.5 6.5 0 0 1 10.320 13.356 Z"
+                    fill="var(--color-yellow)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 10.320 13.356 A 6.5 6.5 0 0 1 4.680 13.356 Z"
+                    fill="var(--color-success)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 4.680 13.356 A 6.5 6.5 0 0 1 1.163 8.946 Z"
+                    fill="var(--color-info)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 1.163 8.946 A 6.5 6.5 0 0 1 2.418 3.447 Z"
+                    fill="var(--color-accent)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 2.418 3.447 A 6.5 6.5 0 0 1 7.5 1.0 Z"
+                    fill="var(--color-purple)"
+                  ></path>
+                </svg>
+              </span>
+              <select id="theme-select" aria-label="Theme" data-i18n-aria-label="themeSelectLabel">
+                <option value="tokyonight">Tokyo Night</option>
+                <option value="tokyonight-light">Tokyo Night Light</option>
+                <option value="dracula" selected>Dracula</option>
+                <option value="alucard">Alucard</option>
+                <option value="matrix">Matrix</option>
+                <option value="matrix-light">Matrix Light</option>
+                <option value="modus-operandi">Modus Operandi</option>
+                <option value="modus-vivendi">Modus Vivendi</option>
+                <option value="modus-operandi-tinted">Modus Operandi Tinted</option>
+                <option value="modus-vivendi-tinted">Modus Vivendi Tinted</option>
+                <option value="modus-operandi-deuteranopia">Modus Operandi Deuteranopia</option>
+                <option value="modus-vivendi-deuteranopia">Modus Vivendi Deuteranopia</option>
+                <option value="modus-operandi-tritanopia">Modus Operandi Tritanopia</option>
+                <option value="modus-vivendi-tritanopia">Modus Vivendi Tritanopia</option>
+              </select>
+            </div>
             <button type="button" id="scheme-light" aria-pressed="false" aria-label="Light mode">
               <svg
                 width="15"
