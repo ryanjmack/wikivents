@@ -2,12 +2,10 @@
  * Copyright (c) 2026 Ryan Mack. MIT License.
  */
 import '../styles/globals.css';
-import {hydrateI18n} from '../i18n/init.ts';
+import {initLang} from '../utils/i18n/lang.ts';
 import {initFontScale} from '../utils/preferences/font-scale.ts';
 import {initColorScheme, initTheme} from '../utils/preferences/theme.ts';
 import {drawSparkline} from '../utils/sparkline/sparkline.ts';
-
-hydrateI18n();
 
 const canvas = document.getElementById('sparkline') as HTMLCanvasElement;
 const panel = document.getElementById('sparkline-panel');
@@ -42,6 +40,7 @@ new MutationObserver(() => {
   drawSparkline(renderCtx);
 }).observe(document.documentElement, {attributeFilter: ['data-theme']});
 
+initLang();
 initFontScale();
 initTheme();
 initColorScheme();
