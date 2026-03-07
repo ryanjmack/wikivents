@@ -34,7 +34,7 @@ pnpm test:watch    run tests in watch mode
 - **Vite**: fast dev server, native ESM, fast builds
 - **Vitest**: shares Vite's module graph, no env drift
 - **CSS Modules**: scoped styles per file
-- **PostCSS + Autoprefixer**: modern CSS, no manual vendor prefixes
+- **LightningCSS**: native Vite CSS transformer, automatic vendor prefixes, CSS nesting
 - **modern-css-reset**: clean baseline
 - **ESLint + Prettier + Stylelint**: enforced code and style consistency
 - **Husky + lint-staged + commitlint**: clean commits, enforced conventions, no CI surprises
@@ -48,3 +48,7 @@ lint -> test -> build
 ```
 
 Output is a static `dist/` folder, deploy anywhere that serves static files.
+
+## Credits
+
+- Color palette: [Tokyo Night](https://github.com/folke/tokyonight.nvim) by Folke Wiberg (Apache 2.0)

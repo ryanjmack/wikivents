@@ -1,12 +1,596 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dracula">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>wikivents</title>
   </head>
   <body>
-    <div id="app"></div>
+    <main>
+      <header id="header">
+        <div id="sparkline-panel">
+          <div id="sparkline-bar">
+            <span id="eps-label" data-i18n="epsLabel">events/sec</span>
+            <div id="stream-controls">
+              <span
+                id="connection-status"
+                data-state="connected"
+                aria-live="polite"
+                data-i18n="connectionConnected"
+              >
+                connected
+              </span>
+              <button id="pause-btn" type="button" aria-pressed="false" autofocus data-i18n="pause">
+                Pause
+              </button>
+            </div>
+          </div>
+          <canvas id="sparkline" aria-hidden="true"></canvas>
+        </div>
+        <div id="header-controls">
+          <div id="color-scheme-controls">
+            <div id="theme-select-wrapper">
+              <span id="theme-select-icon" aria-hidden="true">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M 7.5 7.5 L 7.5 1.0 A 6.5 6.5 0 0 1 12.582 3.447 Z"
+                    fill="var(--color-danger)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 12.582 3.447 A 6.5 6.5 0 0 1 13.837 8.946 Z"
+                    fill="var(--color-warning)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 13.837 8.946 A 6.5 6.5 0 0 1 10.320 13.356 Z"
+                    fill="var(--color-yellow)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 10.320 13.356 A 6.5 6.5 0 0 1 4.680 13.356 Z"
+                    fill="var(--color-success)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 4.680 13.356 A 6.5 6.5 0 0 1 1.163 8.946 Z"
+                    fill="var(--color-info)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 1.163 8.946 A 6.5 6.5 0 0 1 2.418 3.447 Z"
+                    fill="var(--color-accent)"
+                  ></path>
+                  <path
+                    d="M 7.5 7.5 L 2.418 3.447 A 6.5 6.5 0 0 1 7.5 1.0 Z"
+                    fill="var(--color-purple)"
+                  ></path>
+                </svg>
+              </span>
+              <select id="theme-select" aria-label="Theme" data-i18n-aria-label="themeSelectLabel">
+                <option value="tokyonight">Tokyo Night</option>
+                <option value="tokyonight-light">Tokyo Night Light</option>
+                <option value="dracula" selected>Dracula</option>
+                <option value="alucard">Alucard</option>
+                <option value="matrix">Matrix</option>
+                <option value="matrix-light">Matrix Light</option>
+                <option value="modus-operandi">Modus Operandi</option>
+                <option value="modus-vivendi">Modus Vivendi</option>
+                <option value="modus-operandi-tinted">Modus Operandi Tinted</option>
+                <option value="modus-vivendi-tinted">Modus Vivendi Tinted</option>
+                <option value="modus-operandi-deuteranopia">Modus Operandi Deuteranopia</option>
+                <option value="modus-vivendi-deuteranopia">Modus Vivendi Deuteranopia</option>
+                <option value="modus-operandi-tritanopia">Modus Operandi Tritanopia</option>
+                <option value="modus-vivendi-tritanopia">Modus Vivendi Tritanopia</option>
+              </select>
+            </div>
+            <button type="button" id="scheme-light" aria-pressed="false" aria-label="Light mode">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 15 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M7.5 0C7.77614 0 8 0.223858 8 0.5V2.5C8 2.77614 7.77614 3 7.5 3C7.22386 3 7 2.77614 7 2.5V0.5C7 0.223858 7.22386 0 7.5 0ZM2.1967 2.1967C2.39196 2.00144 2.70854 2.00144 2.90381 2.1967L4.31802 3.61091C4.51328 3.80617 4.51328 4.12276 4.31802 4.31802C4.12276 4.51328 3.80617 4.51328 3.61091 4.31802L2.1967 2.90381C2.00144 2.70854 2.00144 2.39196 2.1967 2.1967ZM0.5 7C0.223858 7 0 7.22386 0 7.5C0 7.77614 0.223858 8 0.5 8H2.5C2.77614 8 3 7.77614 3 7.5C3 7.22386 2.77614 7 2.5 7H0.5ZM2.1967 12.8033C2.00144 12.608 2.00144 12.2915 2.1967 12.0962L3.61091 10.682C3.80617 10.4867 4.12276 10.4867 4.31802 10.682C4.51328 10.8772 4.51328 11.1938 4.31802 11.3891L2.90381 12.8033C2.70854 12.9986 2.39196 12.9986 2.1967 12.8033ZM12.5 7C12.2239 7 12 7.22386 12 7.5C12 7.77614 12.2239 8 12.5 8H14.5C14.7761 8 15 7.77614 15 7.5C15 7.22386 14.7761 7 14.5 7H12.5ZM10.682 4.31802C10.4867 4.12276 10.4867 3.80617 10.682 3.61091L12.0962 2.1967C12.2915 2.00144 12.608 2.00144 12.8033 2.1967C12.9986 2.39196 12.9986 2.70854 12.8033 2.90381L11.3891 4.31802C11.1938 4.51328 10.8772 4.51328 10.682 4.31802ZM8 12.5C8 12.2239 7.77614 12 7.5 12C7.22386 12 7 12.2239 7 12.5V14.5C7 14.7761 7.22386 15 7.5 15C7.77614 15 8 14.7761 8 14.5V12.5ZM10.682 10.682C10.8772 10.4867 11.1938 10.4867 11.3891 10.682L12.8033 12.0962C12.9986 12.2915 12.9986 12.608 12.8033 12.8033C12.608 12.9986 12.2915 12.9986 12.0962 12.8033L10.682 11.3891C10.4867 11.1938 10.4867 10.8772 10.682 10.682ZM5.5 7.5C5.5 6.39543 6.39543 5.5 7.5 5.5C8.60457 5.5 9.5 6.39543 9.5 7.5C9.5 8.60457 8.60457 9.5 7.5 9.5C6.39543 9.5 5.5 8.60457 5.5 7.5ZM7.5 4.5C5.84315 4.5 4.5 5.84315 4.5 7.5C4.5 9.15685 5.84315 10.5 7.5 10.5C9.15685 10.5 10.5 9.15685 10.5 7.5C10.5 5.84315 9.15685 4.5 7.5 4.5Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+            <button type="button" id="scheme-dark" aria-pressed="false" aria-label="Dark mode">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 15 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M2.89998 0.499976C2.89998 0.279062 2.72089 0.0999756 2.49998 0.0999756C2.27906 0.0999756 2.09998 0.279062 2.09998 0.499976V1.09998H1.49998C1.27906 1.09998 1.09998 1.27906 1.09998 1.49998C1.09998 1.72089 1.27906 1.89998 1.49998 1.89998H2.09998V2.49998C2.09998 2.72089 2.27906 2.89998 2.49998 2.89998C2.72089 2.89998 2.89998 2.72089 2.89998 2.49998V1.89998H3.49998C3.72089 1.89998 3.89998 1.72089 3.89998 1.49998C3.89998 1.27906 3.72089 1.09998 3.49998 1.09998H2.89998V0.499976ZM5.89998 3.49998C5.89998 3.27906 5.72089 3.09998 5.49998 3.09998C5.27906 3.09998 5.09998 3.27906 5.09998 3.49998V4.09998H4.49998C4.27906 4.09998 4.09998 4.27906 4.09998 4.49998C4.09998 4.72089 4.27906 4.89998 4.49998 4.89998H5.09998V5.49998C5.09998 5.72089 5.27906 5.89998 5.49998 5.89998C5.72089 5.89998 5.89998 5.72089 5.89998 5.49998V4.89998H6.49998C6.72089 4.89998 6.89998 4.72089 6.89998 4.49998C6.89998 4.27906 6.72089 4.09998 6.49998 4.09998H5.89998V3.49998ZM1.89998 6.49998C1.89998 6.27906 1.72089 6.09998 1.49998 6.09998C1.27906 6.09998 1.09998 6.27906 1.09998 6.49998V7.09998H0.499976C0.279062 7.09998 0.0999756 7.27906 0.0999756 7.49998C0.0999756 7.72089 0.279062 7.89998 0.499976 7.89998H1.09998V8.49998C1.09998 8.72089 1.27906 8.89997 1.49998 8.89997C1.72089 8.89997 1.89998 8.72089 1.89998 8.49998V7.89998H2.49998C2.72089 7.89998 2.89998 7.72089 2.89998 7.49998C2.89998 7.27906 2.72089 7.09998 2.49998 7.09998H1.89998V6.49998ZM8.54406 0.98184L8.24618 0.941586C8.03275 0.917676 7.90692 1.1655 8.02936 1.34194C8.17013 1.54479 8.29981 1.75592 8.41754 1.97445C8.91878 2.90485 9.20322 3.96932 9.20322 5.10022C9.20322 8.37201 6.82247 11.0878 3.69887 11.6097C3.45736 11.65 3.20988 11.6772 2.96008 11.6906C2.74563 11.702 2.62729 11.9535 2.77721 12.1072C2.84551 12.1773 2.91535 12.2458 2.98667 12.3128L3.05883 12.3795L3.31883 12.6045L3.50684 12.7532L3.62796 12.8433L3.81491 12.9742L3.99079 13.089C4.11175 13.1651 4.23536 13.2375 4.36157 13.3059L4.62496 13.4412L4.88553 13.5607L5.18837 13.6828L5.43169 13.7686C5.56564 13.8128 5.70149 13.8529 5.83857 13.8885C5.94262 13.9155 6.04767 13.9401 6.15405 13.9622C6.27993 13.9883 6.40713 14.0109 6.53544 14.0298L6.85241 14.0685L7.11934 14.0892C7.24637 14.0965 7.37436 14.1002 7.50322 14.1002C11.1483 14.1002 14.1032 11.1453 14.1032 7.50023C14.1032 7.25044 14.0893 7.00389 14.0623 6.76131L14.0255 6.48407C13.991 6.26083 13.9453 6.04129 13.8891 5.82642C13.8213 5.56709 13.7382 5.31398 13.6409 5.06881L13.5279 4.80132L13.4507 4.63542L13.3766 4.48666C13.2178 4.17773 13.0353 3.88295 12.8312 3.60423L12.6782 3.40352L12.4793 3.16432L12.3157 2.98361L12.1961 2.85951L12.0355 2.70246L11.8134 2.50184L11.4925 2.24191L11.2483 2.06498L10.9562 1.87446L10.6346 1.68894L10.3073 1.52378L10.1938 1.47176L9.95488 1.3706L9.67791 1.2669L9.42566 1.1846L9.10075 1.09489L8.83599 1.03486L8.54406 0.98184ZM10.4032 5.30023C10.4032 4.27588 10.2002 3.29829 9.83244 2.40604C11.7623 3.28995 13.1032 5.23862 13.1032 7.50023C13.1032 10.593 10.596 13.1002 7.50322 13.1002C6.63646 13.1002 5.81597 12.9036 5.08355 12.5522C6.5419 12.0941 7.81081 11.2082 8.74322 10.0416C8.87963 10.2284 9.10028 10.3497 9.34928 10.3497C9.76349 10.3497 10.0993 10.0139 10.0993 9.59971C10.0993 9.24256 9.84965 8.94373 9.51535 8.86816C9.57741 8.75165 9.63653 8.63334 9.6926 8.51332C9.88358 8.63163 10.1088 8.69993 10.35 8.69993C11.0403 8.69993 11.6 8.14028 11.6 7.44993C11.6 6.75976 11.0406 6.20024 10.3505 6.19993C10.3853 5.90487 10.4032 5.60464 10.4032 5.30023Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div
+            id="font-scale-controls"
+            role="group"
+            data-i18n-aria-label="fontSizeGroupLabel"
+            aria-label="Font size"
+          >
+            <button
+              type="button"
+              id="font-scale-sm"
+              aria-pressed="false"
+              data-i18n-aria-label="fontSizeSmall"
+              aria-label="Small font"
+            >
+              <span aria-hidden="true" style="font-size: 0.75em">A</span>
+            </button>
+            <button
+              type="button"
+              id="font-scale-md"
+              aria-pressed="true"
+              data-i18n-aria-label="fontSizeMedium"
+              aria-label="Medium font"
+            >
+              <span aria-hidden="true" style="font-size: 1em">A</span>
+            </button>
+            <button
+              type="button"
+              id="font-scale-lg"
+              aria-pressed="false"
+              data-i18n-aria-label="fontSizeLarge"
+              aria-label="Large font"
+            >
+              <span aria-hidden="true" style="font-size: 1.33em">A</span>
+            </button>
+          </div>
+          <div id="lang-controls">
+            <div id="lang-select-wrapper">
+              <span id="lang-select-icon" aria-hidden="true">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7.49996 1.80002C4.35194 1.80002 1.79996 4.352 1.79996 7.50002C1.79996 10.648 4.35194 13.2 7.49996 13.2C10.648 13.2 13.2 10.648 13.2 7.50002C13.2 4.352 10.648 1.80002 7.49996 1.80002ZM0.899963 7.50002C0.899963 3.85494 3.85488 0.900024 7.49996 0.900024C11.145 0.900024 14.1 3.85494 14.1 7.50002C14.1 11.1451 11.145 14.1 7.49996 14.1C3.85488 14.1 0.899963 11.1451 0.899963 7.50002Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  ></path>
+                  <path
+                    d="M13.4999 7.89998H1.49994V7.09998H13.4999V7.89998Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  ></path>
+                  <path
+                    d="M7.09991 13.5V1.5H7.89991V13.5H7.09991zM10.375 7.49998C10.375 5.32724 9.59364 3.17778 8.06183 1.75656L8.53793 1.24341C10.2396 2.82218 11.075 5.17273 11.075 7.49998 11.075 9.82724 10.2396 12.1778 8.53793 13.7566L8.06183 13.2434C9.59364 11.8222 10.375 9.67273 10.375 7.49998zM3.99969 7.5C3.99969 5.17611 4.80786 2.82678 6.45768 1.24719L6.94177 1.75281C5.4582 3.17323 4.69969 5.32389 4.69969 7.5 4.6997 9.67611 5.45822 11.8268 6.94179 13.2472L6.45769 13.7528C4.80788 12.1732 3.9997 9.8239 3.99969 7.5z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  ></path>
+                  <path
+                    d="M7.49996 3.95801C9.66928 3.95801 11.8753 4.35915 13.3706 5.19448 13.5394 5.28875 13.5998 5.50197 13.5055 5.67073 13.4113 5.83948 13.198 5.89987 13.0293 5.8056 11.6794 5.05155 9.60799 4.65801 7.49996 4.65801 5.39192 4.65801 3.32052 5.05155 1.97064 5.8056 1.80188 5.89987 1.58866 5.83948 1.49439 5.67073 1.40013 5.50197 1.46051 5.28875 1.62927 5.19448 3.12466 4.35915 5.33063 3.95801 7.49996 3.95801zM7.49996 10.85C9.66928 10.85 11.8753 10.4488 13.3706 9.6135 13.5394 9.51924 13.5998 9.30601 13.5055 9.13726 13.4113 8.9685 13.198 8.90812 13.0293 9.00238 11.6794 9.75643 9.60799 10.15 7.49996 10.15 5.39192 10.15 3.32052 9.75643 1.97064 9.00239 1.80188 8.90812 1.58866 8.9685 1.49439 9.13726 1.40013 9.30601 1.46051 9.51924 1.62927 9.6135 3.12466 10.4488 5.33063 10.85 7.49996 10.85z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </span>
+              <select id="lang-select" data-i18n-aria-label="langSelectLabel" aria-label="Language">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div id="inspector-header">
+        <h2 data-i18n="sectionInspector">Inspector</h2>
+        <button id="inspector-toggle" type="button" aria-pressed="false">JSON</button>
+      </div>
+
+      <div id="filter-bar">
+        <input
+          id="filter-input"
+          type="search"
+          data-i18n-aria-label="filterAriaLabel"
+          aria-label="Filter events"
+          data-i18n-placeholder="filterPlaceholder"
+          placeholder="type + enter..."
+        />
+      </div>
+
+      <section id="inspector" data-view="pretty">
+        <div id="inspector-pretty">
+          <dl class="inspector-fields">
+            <dt data-i18n="detailTitle">Title</dt>
+            <dd>
+              <a
+                href="https://en.wikipedia.org/wiki/Bamboo_shoot"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Bamboo shoot ↗
+              </a>
+            </dd>
+            <dt data-i18n="detailUser">User</dt>
+            <dd>
+              <a
+                href="https://en.wikipedia.org/wiki/User:Grinnypigs"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Grinnypigs ↗
+              </a>
+            </dd>
+            <dt data-i18n="colBot">Bot</dt>
+            <dd><span class="val-no" data-i18n="valNo">no</span></dd>
+            <dt data-i18n="detailType">Type</dt>
+            <dd><span class="type-badge type-edit" data-i18n="typeEdit">edit</span></dd>
+            <dt data-i18n="detailChange">Change</dt>
+            <dd><span class="change-pos">+29 bytes</span></dd>
+            <dt data-i18n="detailTime">Time</dt>
+            <dd>2026-03-01 00:23:31 UTC</dd>
+            <dt data-i18n="detailSummary">Summary</dt>
+            <dd>
+              i made it more understandable in hopes that people don't judge something so quickly
+              before they try it
+            </dd>
+            <dt data-i18n="detailMinorEdit">Minor edit</dt>
+            <dd><span class="val-no" data-i18n="valNo">no</span></dd>
+            <dt data-i18n="detailPatrolled">Patrolled</dt>
+            <dd><span class="val-yes" data-i18n="valYes">yes</span></dd>
+            <dt data-i18n="detailWiki">Wiki</dt>
+            <dd>enwiki</dd>
+            <dt data-i18n="detailNamespace">Namespace</dt>
+            <dd>Article</dd>
+            <dt data-i18n="detailRevision">Revision</dt>
+            <dd>1340000000 → 1340000001</dd>
+            <dt data-i18n="detailDiff">Diff</dt>
+            <dd>
+              <a
+                class="diff-link"
+                href="https://en.wikipedia.org/w/index.php?diff=1340000001&amp;oldid=1340000000"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="detailOpenDiff"
+              >
+                open diff
+              </a>
+            </dd>
+            <hr class="inspector-divider" />
+            <dt data-i18n="detailDomain">Domain</dt>
+            <dd><span class="val-meta">en.wikipedia.org</span></dd>
+            <dt data-i18n="detailPageUrl">Page URL</dt>
+            <dd>
+              <a
+                href="https://en.wikipedia.org/wiki/Bamboo_shoot"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                https://en.wikipedia.org/wiki/Bamboo_shoot ↗
+              </a>
+            </dd>
+            <dt data-i18n="detailSize">Size</dt>
+            <dd><span class="val-meta">12,450 → 12,479 B</span></dd>
+            <dt data-i18n="detailSchema">Schema</dt>
+            <dd><span class="val-meta">/mediawiki/recentchange/1.0.0</span></dd>
+            <dt data-i18n="detailEventId">Event ID</dt>
+            <dd><span class="val-meta">12345678</span></dd>
+            <dt data-i18n="detailStream">Stream</dt>
+            <dd><span class="val-meta">mediawiki.recentchange</span></dd>
+            <dt data-i18n="detailTopic">Topic</dt>
+            <dd><span class="val-meta">eqiad.mediawiki.recentchange</span></dd>
+            <dt data-i18n="detailPartition">Partition</dt>
+            <dd><span class="val-meta">0</span></dd>
+            <dt data-i18n="detailOffset">Offset</dt>
+            <dd><span class="val-meta">5000</span></dd>
+          </dl>
+        </div>
+        <pre id="inspector-json" aria-hidden="true">
+{
+  "$schema": "/mediawiki/recentchange/1.0.0",
+  "meta": {
+    "uri": "https://en.wikipedia.org/wiki/Bamboo_shoot",
+    "request_id": "a1b2c3d4-0000-0000-0000-000000000001",
+    "id": "101fffd7-0000-0000-0000-000000000001",
+    "dt": "2026-03-01T00:23:31.000Z",
+    "domain": "en.wikipedia.org",
+    "stream": "mediawiki.recentchange",
+    "topic": "eqiad.mediawiki.recentchange",
+    "partition": 0,
+    "offset": 5000
+  },
+  "id": 12345678,
+  "type": "edit",
+  "namespace": 0,
+  "title": "Bamboo shoot",
+  "title_url": "https://en.wikipedia.org/wiki/Bamboo_shoot",
+  "comment": "i made it more understandable in hopes that people don't judge something so quickly before they try it",
+  "parsedcomment": "i made it more understandable in hopes that people don&#039;t judge something so quickly before they try it",
+  "timestamp": 1772398511,
+  "user": "Grinnypigs",
+  "bot": false,
+  "minor": false,
+  "patrolled": true,
+  "wiki": "enwiki",
+  "server_name": "en.wikipedia.org",
+  "server_script_path": "/w",
+  "server_url": "https://en.wikipedia.org",
+  "length": { "old": 12450, "new": 12479 },
+  "revision": { "old": 1340000000, "new": 1340000001 },
+  "notify_url": "https://en.wikipedia.org/w/index.php?diff=1340000001&oldid=1340000000"
+}</pre
+        >
+      </section>
+
+      <section id="grid">
+        <div id="grid-inner" role="grid" aria-label="Event feed">
+          <div id="grid-header" role="row">
+            <div role="columnheader" data-i18n="colTitle">Title</div>
+            <div role="columnheader" data-i18n="colUser">User</div>
+            <div role="columnheader" data-i18n="colBot">Bot</div>
+            <div role="columnheader" data-i18n="colType">Type</div>
+            <div role="columnheader" data-i18n="colChange">Change</div>
+            <div role="columnheader" data-i18n="colTime">Time</div>
+          </div>
+          <div id="grid-viewport">
+            <!-- mock data — replaced by virtual renderer in V3 -->
+            <div class="grid-row" role="row" aria-selected="true">
+              <div role="gridcell">Bamboo shoot</div>
+              <div role="gridcell">Grinnypigs</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge type-edit">edit</span></div>
+              <div role="gridcell" class="change-pos">+29</div>
+              <div role="gridcell">00:23:31 UTC</div>
+            </div>
+            <div class="grid-row" role="row">
+              <div role="gridcell">Bamboo shoot</div>
+              <div role="gridcell">TonySt</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge type-edit">edit</span></div>
+              <div role="gridcell" class="change-neg">-29</div>
+              <div role="gridcell">00:23:40 UTC</div>
+            </div>
+            <div class="grid-row" role="row">
+              <div role="gridcell">United Football League (2024–present)</div>
+              <div role="gridcell">AFC Vixen</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge type-edit">edit</span></div>
+              <div role="gridcell" class="change-pos">+6550</div>
+              <div role="gridcell">00:23:33 UTC</div>
+            </div>
+            <div class="grid-row" role="row">
+              <div role="gridcell">2026 Israeli–United States strikes on Iran</div>
+              <div role="gridcell">David O. Johnson</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge type-log">log</span></div>
+              <div role="gridcell">—</div>
+              <div role="gridcell">00:23:47 UTC</div>
+            </div>
+            <div class="grid-row" role="row">
+              <div role="gridcell">User:LevatorScapulaeSyndrome</div>
+              <div role="gridcell">Davide King</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge type-log">log</span></div>
+              <div role="gridcell">—</div>
+              <div role="gridcell">00:23:30 UTC</div>
+            </div>
+            <div class="grid-row" role="row">
+              <div role="gridcell">Lauryn Hill</div>
+              <div role="gridcell">Kanyfug</div>
+              <div role="gridcell">—</div>
+              <div role="gridcell"><span class="type-badge type-edit">edit</span></div>
+              <div role="gridcell" class="change-neg">-6</div>
+              <div role="gridcell">00:23:50 UTC</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside>
+        <section id="hot-pages">
+          <h2 data-i18n="sectionHotpages">Hot pages (60s)</h2>
+          <ol class="hot-pages-list sidebar-list">
+            <li class="hot-page-item sidebar-item">
+              <span class="hot-page-indicator">▶</span>
+              <a class="hot-page-title" href="https://en.wikipedia.org/wiki/Phlebiac_Brothers">
+                Phlebiac Brothers
+              </a>
+              <span class="hot-page-count mono-count">×7</span>
+            </li>
+            <li class="hot-page-item sidebar-item">
+              <span class="hot-page-indicator"></span>
+              <a
+                class="hot-page-title"
+                href="https://en.wikipedia.org/wiki/2026_Zona_da_Mata_floods"
+              >
+                2026 Zona da Mata floods
+              </a>
+              <span class="hot-page-count mono-count">×4</span>
+            </li>
+            <li class="hot-page-item sidebar-item">
+              <span class="hot-page-indicator"></span>
+              <a
+                class="hot-page-title"
+                href="https://en.wikipedia.org/wiki/Draft:Superman/Spider-Man_and_Spider-Man/Superman"
+              >
+                Draft:Superman/Spider-Man and Spider-Man/Superman
+              </a>
+              <span class="hot-page-count mono-count">×4</span>
+            </li>
+            <li class="hot-page-item sidebar-item">
+              <span class="hot-page-indicator"></span>
+              <a
+                class="hot-page-title"
+                href="https://en.wikipedia.org/wiki/Wikipedia:Articles_for_deletion/Dhananjay_(politician)"
+              >
+                Wikipedia:Articles for deletion/Dhananjay (politician)
+              </a>
+              <span class="hot-page-count mono-count">×4</span>
+            </li>
+            <li class="hot-page-item sidebar-item">
+              <span class="hot-page-indicator"></span>
+              <a class="hot-page-title" href="https://en.wikipedia.org/wiki/Hala_Al-Qadi">
+                Hala Al-Qadi
+              </a>
+              <span class="hot-page-count mono-count">×4</span>
+            </li>
+          </ol>
+        </section>
+
+        <section id="hot-users">
+          <h2 data-i18n="sectionHotusers">Hot users (60s)</h2>
+          <ol class="hot-users-list sidebar-list">
+            <li class="hot-user-item sidebar-item">
+              <span class="hot-user-indicator">▶</span>
+              <!-- bot badge omitted: bot=false -->
+              <a class="hot-user-name" href="https://en.wikipedia.org/wiki/User:Staryu">Staryu</a>
+              <span class="hot-user-count mono-count">×273</span>
+            </li>
+            <li class="hot-user-item sidebar-item">
+              <span class="hot-user-indicator"></span>
+              <a class="hot-user-name" href="https://en.wikipedia.org/wiki/User:Zackmann08">
+                Zackmann08
+              </a>
+              <span class="hot-user-count mono-count">×76</span>
+            </li>
+            <li class="hot-user-item sidebar-item">
+              <span class="hot-user-indicator"></span>
+              <a class="hot-user-name" href="https://en.wikipedia.org/wiki/User:Yedaman54">
+                Yedaman54
+              </a>
+              <span class="hot-user-count mono-count">×28</span>
+            </li>
+            <li class="hot-user-item sidebar-item">
+              <span class="hot-user-indicator"></span>
+              <a class="hot-user-name" href="https://en.wikipedia.org/wiki/User:Izno">Izno</a>
+              <span class="hot-user-count mono-count">×26</span>
+            </li>
+            <li class="hot-user-item sidebar-item">
+              <span class="hot-user-indicator"></span>
+              <a class="hot-user-name" href="https://en.wikipedia.org/wiki/User:TNstingray">
+                TNstingray
+              </a>
+              <span class="hot-user-count mono-count">×17</span>
+            </li>
+          </ol>
+        </section>
+
+        <section id="largest-deltas">
+          <h2 data-i18n="sectionLargestDeltas">Largest deltas</h2>
+          <ol class="delta-list sidebar-list">
+            <li class="delta-item sidebar-item">
+              <a class="delta-title" href="https://en.wikipedia.org/wiki/Afterpiece">Afterpiece</a>
+              <span class="delta-value change-pos">+5280</span>
+            </li>
+            <li class="delta-item sidebar-item">
+              <a class="delta-title" href="https://en.wikipedia.org/wiki/Talk:La_France_Insoumise">
+                Talk:La France Insoumise
+              </a>
+              <span class="delta-value change-pos">+5162</span>
+            </li>
+            <li class="delta-item sidebar-item">
+              <a class="delta-title" href="https://en.wikipedia.org/wiki/Mountjoy_Square">
+                Mountjoy Square
+              </a>
+              <span class="delta-value change-pos">+3210</span>
+            </li>
+            <li class="delta-item sidebar-item">
+              <a class="delta-title" href="https://en.wikipedia.org/wiki/Hemispheres_Tour">
+                Hemispheres Tour
+              </a>
+              <span class="delta-value change-pos">+3122</span>
+            </li>
+            <li class="delta-item sidebar-item">
+              <a class="delta-title" href="https://en.wikipedia.org/wiki/User_talk:Walterfgnn">
+                User talk:Walterfgnn
+              </a>
+              <span class="delta-value change-neg">-2292</span>
+            </li>
+          </ol>
+        </section>
+
+        <section id="hot-types">
+          <h2 data-i18n="sectionHotTypes">Hot types (60s)</h2>
+          <ol class="hot-types-list sidebar-list">
+            <li class="hot-type-item sidebar-item">
+              <span class="type-badge type-edit" data-i18n="typeEdit">edit</span>
+              <span class="hot-type-count mono-count">×497</span>
+            </li>
+            <li class="hot-type-item sidebar-item">
+              <span class="type-badge type-categorize" data-i18n="typeCategorize">categorize</span>
+              <span class="hot-type-count mono-count">×426</span>
+            </li>
+            <li class="hot-type-item sidebar-item">
+              <span class="type-badge type-log" data-i18n="typeLog">log</span>
+              <span class="hot-type-count mono-count">×55</span>
+            </li>
+            <li class="hot-type-item sidebar-item">
+              <span class="type-badge type-new" data-i18n="typeNew">new</span>
+              <span class="hot-type-count mono-count">×21</span>
+            </li>
+          </ol>
+        </section>
+
+        <section id="hot-log-actions">
+          <h2 data-i18n="sectionHotLogActions">Hot log actions (60s)</h2>
+          <ol class="log-action-list sidebar-list">
+            <li class="log-action-item sidebar-item">
+              <span class="log-action-key">abusefilter:hit</span>
+              <span class="log-action-count mono-count">×22</span>
+            </li>
+            <li class="log-action-item sidebar-item">
+              <span class="log-action-key">newusers:create</span>
+              <span class="log-action-count mono-count">×11</span>
+            </li>
+            <li class="log-action-item sidebar-item">
+              <span class="log-action-key">block:block</span>
+              <span class="log-action-count mono-count">×7</span>
+            </li>
+            <li class="log-action-item sidebar-item">
+              <span class="log-action-key">move:move_redir</span>
+              <span class="log-action-count mono-count">×2</span>
+            </li>
+            <li class="log-action-item sidebar-item">
+              <span class="log-action-key">delete:delete_redir</span>
+              <span class="log-action-count mono-count">×2</span>
+            </li>
+          </ol>
+        </section>
+      </aside>
+
+      <footer>
+        <dl>
+          <dt data-i18n="hudFps">FPS</dt>
+          <dd><output id="hud-fps">60</output></dd>
+          <dt data-i18n="hudLongtasks">longtasks</dt>
+          <dd><output id="hud-longtasks">3</output></dd>
+          <dt data-i18n="hudQueue">queue</dt>
+          <dd><output id="hud-queue">8</output></dd>
+          <dt data-i18n="hudDropped">dropped</dt>
+          <dd><output id="hud-dropped">12</output></dd>
+          <dt data-i18n="epsLabel">events/sec</dt>
+          <dd><output id="hud-eps">4.2</output></dd>
+        </dl>
+      </footer>
+    </main>
+
     <script type="module" src="/src/app/app.ts"></script>
   </body>
 </html>

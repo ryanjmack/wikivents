@@ -9,13 +9,14 @@
 #
 # [optional body]
 # ----------------------------------------------------------------------
-# TYPES:
+# TYPES (trimmed from conventional defaults -- no build/ci/revert/style):
 #    feat:     New feature
 #    fix:      Bugfix
 #    perf:     Efficiency and latency tuning
 #    chore:    Maintenance, tooling, and deps
 #    refactor: Cleanup (no behavior change)
 #    docs:     Documentation only
+#    test:     Tests only
 #
 #    Append ! for breaking changes
 # ----------------------------------------------------------------------
@@ -30,3 +31,6 @@
 #    previously inferred. Consumers of this shell will need to
 #    audit their own code after upgrading.
 # ----------------------------------------------------------------------
+#
+# More types exist in the full conventional commits spec (build, ci,
+# revert, style) -- intentionally omitted here for leaner workflows.
