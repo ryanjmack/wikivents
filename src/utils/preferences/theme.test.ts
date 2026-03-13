@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Ryan Mack. MIT License.
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
  */
 
 /**
@@ -69,8 +69,8 @@ describe('applyScheme', () => {
       <select id="theme-select">
         <option value="dracula"></option>
         <option value="alucard"></option>
-        <option value="tokyonight"></option>
-        <option value="tokyonight-light"></option>
+        <option value="matrix"></option>
+        <option value="matrix-light"></option>
       </select>
     `;
     document.documentElement.dataset['theme'] = currentTheme;
@@ -103,9 +103,9 @@ describe('applyScheme', () => {
   });
 
   it('switches to paired theme going dark to light', () => {
-    makeSchemeDOM('tokyonight');
+    makeSchemeDOM('matrix');
     applyScheme('light');
-    expect(document.documentElement.dataset['theme']).toBe('tokyonight-light');
+    expect(document.documentElement.dataset['theme']).toBe('matrix-light');
   });
 
   it('does not switch theme when scheme already matches', () => {
@@ -121,8 +121,8 @@ describe('applyScheme', () => {
     const opt = (v: string) => Array.from(select.options).find((o) => o.value === v);
     expect(opt('dracula')?.hidden).toBe(true);
     expect(opt('alucard')?.hidden).toBe(false);
-    expect(opt('tokyonight')?.hidden).toBe(true);
-    expect(opt('tokyonight-light')?.hidden).toBe(false);
+    expect(opt('matrix')?.hidden).toBe(true);
+    expect(opt('matrix-light')?.hidden).toBe(false);
   });
 });
 

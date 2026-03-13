@@ -1,54 +1,8 @@
 /*
- * Copyright (c) 2026 Ryan Mack. MIT License.
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
  */
 
 /* Color mixing: use color-mix(in oklch, ...) for all derived/alpha colors — perceptually uniform */
-
-/* ── tokyonight (dark) ──── */
-html[data-theme='tokyonight'] {
-  color-scheme: dark;
-
-  --color-bg: #24283b;
-  --color-bg-surface: #292e42;
-  --color-bg-overlay: #414868;
-  --color-text: #c0caf5;
-  --color-text-muted: #a9b1d6;
-  --color-text-faint: #565f89;
-  --color-border: #414868;
-  --color-border-subtle: #292e42;
-  --color-accent: #7aa2f7; /* blue — primary interactive */
-  --color-accent-hover: #8db0ff;
-  --color-sparkline: #7aa2f7;
-  --color-success: #9ece6a;
-  --color-warning: #ff9e64; /* orange */
-  --color-danger: #f7768e;
-  --color-info: #7dcfff; /* cyan — secondary */
-  --color-purple: #bb9af7;
-  --color-yellow: #e0af68; /* amber — Tokyo Night signature */
-}
-
-/* ── tokyonight-light ───── */
-html[data-theme='tokyonight-light'] {
-  color-scheme: light;
-
-  --color-bg: #e1e2e7;
-  --color-bg-surface: #d0d5e3;
-  --color-bg-overlay: #b7c1e3;
-  --color-text: #3760bf;
-  --color-text-muted: #6172b0;
-  --color-text-faint: #848cb5;
-  --color-border: #a8aecb;
-  --color-border-subtle: #c4c8da;
-  --color-accent: #1558c8;
-  --color-accent-hover: #2e7de9;
-  --color-sparkline: #1558c8;
-  --color-success: #587539;
-  --color-warning: #b15c00; /* orange */
-  --color-danger: #f52a65;
-  --color-info: #007197;
-  --color-purple: #9854f1;
-  --color-yellow: #8c6c3e; /* amber */
-}
 
 /* ── dracula (dark) ──────── */
 html[data-theme='dracula'] {
@@ -142,6 +96,12 @@ html[data-theme='matrix-light'] {
   --color-purple: #d966ff;
   --color-yellow: #df3;
 }
+
+/*
+ * Modus Themes — Protesilaos Stavrou
+ * https://protesilaos.com/emacs/modus-themes
+ * GPL-3.0-or-later
+ */
 
 /* Modus Operandi - High contrast light theme */
 html[data-theme='modus-operandi'] {

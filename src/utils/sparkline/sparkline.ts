@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Ryan Mack. MIT License.
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
  */
 
 export function toPoints(data: number[], w: number, h: number): {x: number; y: number}[] {

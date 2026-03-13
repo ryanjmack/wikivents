@@ -1,12 +1,10 @@
 /*
- * Copyright (c) 2026 Ryan Mack. MIT License.
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
  */
 
 const THEME_KEY = 'wikivents:theme';
 
 export const THEMES = [
-  'tokyonight',
-  'tokyonight-light',
   'dracula',
   'alucard',
   'matrix',
@@ -24,7 +22,6 @@ export type Theme = (typeof THEMES)[number];
 
 const THEME_PAIRS: Partial<Record<Theme, Theme>> = (
   [
-    ['tokyonight', 'tokyonight-light'],
     ['dracula', 'alucard'],
     ['matrix', 'matrix-light'],
     ['modus-vivendi', 'modus-operandi'],
@@ -38,8 +35,6 @@ const THEME_PAIRS: Partial<Record<Theme, Theme>> = (
 );
 
 const THEME_SCHEMES: Record<Theme, 'light' | 'dark'> = {
-  tokyonight: 'dark',
-  'tokyonight-light': 'light',
   dracula: 'dark',
   alucard: 'light',
   matrix: 'dark',

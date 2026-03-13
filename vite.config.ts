@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Ryan Mack. MIT License.
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
  */
 import {defineConfig} from 'vitest/config';
 

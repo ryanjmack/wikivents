@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Ryan Mack. MIT License.
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
  */
 import eslint from '@eslint/js';
 import jsoncPlugin from 'eslint-plugin-jsonc';
@@ -8,7 +8,7 @@ import tseslint from 'typescript-eslint';
 import {defineConfig} from 'eslint/config';
 import type {Rule} from 'eslint';
 
-const COPYRIGHT = '/*\n * Copyright (c) 2026 Ryan Mack. MIT License.\n */';
+const COPYRIGHT = '/*\n * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.\n */';
 
 const fileHeader: Rule.RuleModule = {
   meta: {type: 'layout', fixable: 'code'},

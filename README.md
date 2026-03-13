@@ -51,4 +51,4 @@ Output is a static `dist/` folder, deploy anywhere that serves static files.
 
 ## Credits
 
-- Color palette: [Tokyo Night](https://github.com/folke/tokyonight.nvim) by Folke Wiberg (Apache 2.0)
+- [Modus Themes](https://protesilaos.com/emacs/modus-themes) by Protesilaos Stavrou — GPL-3.0-or-later

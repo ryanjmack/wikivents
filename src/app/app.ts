@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Ryan Mack. MIT License.
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
  */
 import '../styles/globals.css';
 import {initLang} from '../utils/i18n/lang.ts';

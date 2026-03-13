@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 Ryan Mack. MIT License.
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
  */
 import stylelint from 'stylelint';
 import type {PostcssResult} from 'stylelint';
@@ -17,7 +17,7 @@ const messages = stylelint.utils.ruleMessages(ruleName, {
 //   comment.raws.left  = whitespace between /* and text
 //   comment.raws.right = whitespace between text and */
 // Stringifier outputs: /* + raws.left + text + raws.right + */
-const COPYRIGHT_TEXT = '* Copyright (c) 2026 Ryan Mack. MIT License.';
+const COPYRIGHT_TEXT = '* Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.';
 const COPYRIGHT_LEFT = '\n ';
 const COPYRIGHT_RIGHT = '\n ';
 
