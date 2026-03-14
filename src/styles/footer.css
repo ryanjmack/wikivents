@@ -1,0 +1,36 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
+ */
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-s) var(--space-m);
+  background: var(--color-bg-overlay);
+  border-top: 1px solid var(--color-border);
+
+  & dl {
+    display: flex;
+    gap: var(--space-l);
+    align-items: center;
+  }
+
+  & dt {
+    color: var(--color-text-muted);
+  }
+
+  & dd {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-m);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text);
+  }
+
+  & #hud-dropped {
+    color: var(--color-danger);
+  }
+
+  & #hud-eps {
+    color: var(--color-info);
+  }
+}

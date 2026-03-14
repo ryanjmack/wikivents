@@ -1,0 +1,139 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
+ */
+
+#font-scale-controls {
+  display: flex;
+  gap: var(--space-s);
+  align-items: baseline;
+
+  & button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    color: var(--color-text-faint);
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--space-xs);
+
+    &:hover {
+      color: var(--color-text-muted);
+      background: var(--color-bg-overlay);
+    }
+
+    &[aria-pressed='true'] {
+      color: var(--color-accent);
+      background: var(--color-bg-overlay);
+      border-color: var(--color-accent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      box-shadow: 0 0 10px 4px color-mix(in oklch, var(--color-accent) 40%, transparent);
+    }
+  }
+}
+
+#color-scheme-controls {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+
+  & #theme-select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  & #theme-select-icon {
+    position: absolute;
+    left: 0.35rem;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  & button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    color: var(--color-text-faint);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--space-xs);
+
+    &:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+  }
+
+  & #scheme-light {
+    &:hover,
+    &[aria-pressed='true'] {
+      color: var(--color-warning);
+    }
+  }
+
+  & #scheme-dark {
+    &:hover,
+    &[aria-pressed='true'] {
+      color: var(--color-yellow);
+    }
+  }
+}
+
+#lang-controls {
+  display: flex;
+  align-items: center;
+
+  & #lang-select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  & #lang-select-icon {
+    position: absolute;
+    left: 0.35rem;
+    display: flex;
+    align-items: center;
+    color: var(--color-text-faint);
+    pointer-events: none;
+  }
+}
+
+#theme-select,
+#lang-select {
+  height: 1.75rem;
+  padding: 0 0.5rem 0 1.35rem;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--space-xs);
+
+  &:hover {
+    background: var(--color-bg-overlay);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    box-shadow: 0 0 10px 4px color-mix(in oklch, var(--color-accent) 40%, transparent);
+  }
+
+  & option {
+    color: var(--color-text);
+    background: var(--color-bg-surface);
+  }
+}

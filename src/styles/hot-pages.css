@@ -1,0 +1,133 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
+ */
+
+aside {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg-surface);
+  border-left: 1px solid var(--color-border);
+}
+
+#hot-pages,
+#hot-users,
+#largest-deltas,
+#hot-types,
+#hot-log-actions {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--space-s);
+  min-height: 0;
+  padding: var(--space-s) var(--space-l) var(--space-s) var(--space-s);
+  overflow-y: auto;
+  border-top: 1px solid var(--color-border);
+
+  & h2 {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+    font-size: inherit;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-muted);
+
+    &::after {
+      flex: 1;
+      height: 1px;
+      content: '';
+      background: var(--color-border);
+    }
+  }
+}
+
+#hot-pages {
+  border-top: none;
+}
+
+/* shared link style for sidebar titles/names */
+.hot-page-title,
+.hot-user-name,
+.delta-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--color-text);
+  white-space: nowrap;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ── Hot pages ─────────────────────────────────────────── */
+
+.hot-pages-list {
+  font-size: var(--font-size-xs);
+
+  & .hot-page-indicator {
+    flex-shrink: 0;
+    width: 1em;
+    color: var(--color-accent);
+  }
+}
+
+/* ── Hot users ─────────────────────────────────────────── */
+
+.hot-users-list {
+  font-size: var(--font-size-xs);
+
+  & .hot-user-indicator {
+    flex-shrink: 0;
+    width: 1em;
+    color: var(--color-accent);
+  }
+
+  & .user-bot {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    color: var(--color-text-faint);
+  }
+}
+
+/* ── Largest deltas ────────────────────────────────────── */
+
+.delta-list {
+  font-size: var(--font-size-xs);
+
+  & .delta-value {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ── Hot types ─────────────────────────────────────────── */
+
+.hot-types-list {
+  font-size: var(--font-size-xs);
+
+  & .hot-type-item {
+    justify-content: space-between;
+
+    & .type-badge {
+      font-size: inherit;
+    }
+  }
+}
+
+/* ── Hot log actions ───────────────────────────────────── */
+
+.log-action-list {
+  font-size: var(--font-size-xs);
+
+  & .log-action-key {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: var(--font-mono);
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+}

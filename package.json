@@ -2,16 +2,17 @@
   "name": "wikivents",
   "version": "0.0.0",
   "private": true,
+  "license": "GPL-3.0-or-later",
   "type": "module",
-  "packageManager": "pnpm@10.30.2",
+  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be",
   "engines": {
     "node": "24.13.1",
-    "pnpm": "10.30.2"
+    "pnpm": "10.32.1"
   },
   "scripts": {
     "build": "vite build",
     "dev": "rm -f vite.log && vite 2>&1 | tee vite.log",
-    "fix": "eslint --flag unstable_native_nodejs_ts_config --fix . && stylelint --fix \"src/**/*.css\" && prettier --write . && tsc --noEmit",
+    "fix": "eslint --flag unstable_native_nodejs_ts_config --fix . && prettier --write . && stylelint --fix \"src/**/*.css\" && tsc --noEmit",
     "lint": "tsc --noEmit && eslint --flag unstable_native_nodejs_ts_config --cache . && stylelint \"src/**/*.css\" && prettier --check .",
     "prepare": "husky",
     "prettier": "prettier --write .",
@@ -25,25 +26,28 @@
     "modern-css-reset": "1.4.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "20.4.2",
-    "@commitlint/config-conventional": "20.4.2",
-    "@commitlint/types": "20.4.0",
+    "@commitlint/cli": "20.4.4",
+    "@commitlint/config-conventional": "20.4.4",
+    "@commitlint/types": "20.4.4",
     "@eslint/js": "10.0.1",
     "@tsconfig/strictest": "2.0.8",
-    "autoprefixer": "10.4.27",
-    "eslint": "10.0.2",
+    "eslint": "10.0.3",
     "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-jsonc": "3.1.1",
+    "eslint-plugin-jsonc": "3.1.2",
     "husky": "9.1.7",
-    "lint-staged": "16.2.7",
+    "jsdom": "28.1.0",
+    "lightningcss": "1.32.0",
+    "lint-staged": "16.4.0",
+    "postcss": "8.5.8",
     "prettier": "3.8.1",
     "stylelint": "17.4.0",
     "stylelint-config-css-modules": "4.6.0",
+    "stylelint-config-recess-order": "7.6.1",
     "stylelint-config-standard": "40.0.0",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.56.1",
-    "vite": "7.3.1",
-    "vitest": "4.0.18"
+    "typescript-eslint": "8.57.0",
+    "vite": "8.0.0",
+    "vitest": "4.1.0"
   },
   "lint-staged": {
     "package.json": [
@@ -66,7 +70,7 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "esbuild"
+      "@rolldown/binding"
     ]
   }
 }

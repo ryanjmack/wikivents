@@ -29,7 +29,6 @@ Three loops: ingest (every message), flush (batched cadence), render (rate-limit
 
 - Conventions are enforced by the toolchain. TypeScript, ESLint, Stylelint, Prettier, and commitlint are configured strictly.
 - Config files are authoritative.
-- Use CSS Modules for component styles.
 
 ## Scripts
 
@@ -58,3 +57,9 @@ pnpm typecheck      # tsc --noEmit only
 ## CI/CD
 
 - lint-staged runs on staged files pre-commit, full pipeline runs pre-push.
+
+## CSS
+
+`modern-css-reset` (Andy Bell's reset) is active. Do not redefine what it already handles.
+
+Use CSS Modules for component styles.

@@ -1,31 +1,61 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
+ */
+
 @import 'modern-css-reset';
+@import './theme.css';
 @import './variables.css';
+@import './layout.css';
+@import './header.css';
+@import './stream-controls.css';
+@import './ui-controls.css';
+@import './inspector.css';
+@import './filter.css';
+@import './grid.css';
+@import './hot-pages.css';
+@import './footer.css';
 
 :root {
-  -webkit-font-smoothing: antialiased;
-  color-scheme: dark;
-  font-family: system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  background-color: var(--color-bg);
+  font-family: var(--font-ui);
   color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+html[data-font-scale='sm'] {
+  font-size: 87.5%;
+}
+
+html[data-font-scale='lg'] {
+  font-size: 112.5%;
 }
 
 body {
   width: 100vw;
   height: 100dvh;
   overflow: hidden;
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-base);
 }
 
-#app {
-  padding: 40px 60px;
+/* ── Utilities ─────────────────────────────────────────── */
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
-#greeting {
-  margin-bottom: 8px;
+.sidebar-item {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: baseline;
 }
 
-#clock {
-  font-size: 12px;
-  opacity: 0.7;
+.mono-count {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  color: var(--color-accent);
 }

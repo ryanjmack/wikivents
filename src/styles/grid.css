@@ -1,0 +1,84 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
+ */
+
+#grid-inner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  /* flex children default to min-height: auto; 0 lets this shrink within its track */
+  min-height: 0;
+  overflow: hidden;
+}
+
+#grid-header {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 6fr) minmax(0, 3fr) minmax(0, 1fr) minmax(0, 2fr)
+    minmax(0, 2fr) minmax(0, 3fr);
+  padding: var(--space-xs) var(--space-s);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-info);
+  background: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+#grid-viewport {
+  flex: 1;
+
+  /* same reason - allows overflow-y: auto to scroll rather than expand */
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 6fr) minmax(0, 3fr) minmax(0, 1fr) minmax(0, 2fr)
+    minmax(0, 2fr) minmax(0, 3fr);
+  padding: var(--space-s);
+  border-bottom: 1px solid var(--color-border);
+
+  &[aria-selected='true'] {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -1px;
+    background: var(--color-bg-surface);
+  }
+}
+
+.type-badge {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-m);
+  color: var(--color-text-muted);
+
+  &.type-edit {
+    color: var(--color-accent);
+  }
+
+  &.type-new {
+    color: var(--color-success);
+  }
+
+  &.type-log {
+    color: var(--color-warning);
+  }
+
+  &.type-categorize {
+    color: var(--color-purple);
+  }
+}
+
+.change-pos,
+.change-neg {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-m);
+}
+
+.change-pos {
+  color: var(--color-success);
+}
+
+.change-neg {
+  color: var(--color-danger);
+}

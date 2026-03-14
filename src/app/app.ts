@@ -1,20 +1,46 @@
+/*
+ * Copyright (c) 2026 Ryan Mack. GPL-3.0-or-later.
+ */
 import '../styles/globals.css';
-import styles from './app.module.css';
-import {formatTime} from '../utils/formatTime.ts';
+import {initLang} from '../utils/i18n/lang.ts';
+import {initFontScale} from '../utils/preferences/font-scale.ts';
+import {initColorScheme, initTheme} from '../utils/preferences/theme.ts';
+import {drawSparkline} from '../utils/sparkline/sparkline.ts';
 
-const timeEl = document.getElementById('time');
+const canvas = document.getElementById('sparkline') as HTMLCanvasElement;
+const panel = document.getElementById('sparkline-panel');
+const bar = document.getElementById('sparkline-bar');
+const ctx = canvas.getContext('2d');
 
-if (!timeEl) {
-  throw new Error('#time not found');
+if (!ctx || !panel || !bar) {
+  throw new Error('required elements missing');
 }
 
-const time: HTMLElement = timeEl;
+// TS doesn't carry narrowing into closures -- rebind so closures see non-nullable types.
+const renderCtx = ctx;
+const renderPanel = panel;
+const renderBar = bar;
 
-time.className = styles['time'] ?? '';
+function resizeAndDraw(entries: ResizeObserverEntry[]): void {
+  const entry = entries[0];
 
-function tick(): void {
-  time.textContent = formatTime(new Date());
+  if (!entry) {
+    return;
+  }
+
+  const gap = parseFloat(getComputedStyle(renderPanel).rowGap) || 0;
+  canvas.width = Math.round(entry.contentRect.width);
+  canvas.height = Math.round(entry.contentRect.height - renderBar.offsetHeight - gap);
+  drawSparkline(renderCtx);
 }
 
-tick();
-setInterval(tick, 1000);
+new ResizeObserver(resizeAndDraw).observe(renderPanel);
+
+new MutationObserver(() => {
+  drawSparkline(renderCtx);
+}).observe(document.documentElement, {attributeFilter: ['data-theme']});
+
+initLang();
+initFontScale();
+initTheme();
+initColorScheme();
